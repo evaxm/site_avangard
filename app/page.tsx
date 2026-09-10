@@ -45,7 +45,7 @@ export default function Home() {
           </a>
           <nav className="nav-links" aria-label="Основная навигация">
             <a href="#top">Главная</a>
-            <a href="#company">О компании</a>
+            <a href="/about">О компании</a>
             <a href="#experience">Опыт команды</a>
             <a href="#documents">Документы</a>
             <a href="#contacts">Контакты</a>
@@ -73,7 +73,7 @@ export default function Home() {
             <a className="button primary" href="#contacts">
               Обсудить объект <span aria-hidden="true">→</span>
             </a>
-            <a className="button secondary" href="#company">
+            <a className="button secondary" href="/about">
               О компании
             </a>
           </div>
@@ -124,7 +124,7 @@ export default function Home() {
       <section className="section shell" id="company">
         <div className="section-head">
           <div>
-            <span className="section-label">О компании</span>
+            <span className="section-label">Наш подход</span>
             <h2>Защита начинается с инженерной модели угроз</h2>
           </div>
           <p>
