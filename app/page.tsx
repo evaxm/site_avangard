@@ -80,19 +80,32 @@ export default function Home() {
           <p className="microcopy">Первичная консультация и разбор задачи — бесплатно</p>
         </div>
 
-        <div className="machine" aria-label="Стилизованная инженерная схема защитного контура">
+        <div className="machine" aria-label="Стилизованная схема столкновения БПЛА с защитной сеткой">
           <div className="machine-bar">
             <span>Инженерный контур</span>
             <span>Объект 86 / online</span>
           </div>
           <div className="machine-screen">
-            <div className="machine-rail" />
-            <div className="nozzle" />
-            <div className="beam" />
-            <div className="printed-part">
-              <span>86</span>
+            <div className="protection-net">
+              <span>Защитная сетка</span>
             </div>
-            <div className="print-bed" />
+            <div className="drone" aria-hidden="true">
+              <i className="drone-arm arm-one" />
+              <i className="drone-arm arm-two" />
+              <span className="rotor rotor-one" />
+              <span className="rotor rotor-two" />
+              <span className="rotor rotor-three" />
+              <span className="rotor rotor-four" />
+              <div className="drone-core">БПЛА</div>
+            </div>
+            <div className="impact" aria-hidden="true">
+              <b>СТОП</b>
+              <i className="spark spark-one" />
+              <i className="spark spark-two" />
+              <i className="spark spark-three" />
+              <i className="spark spark-four" />
+            </div>
+            <div className="impact-caption">Перехват физическим контуром</div>
           </div>
           <div className="metrics">
             <div><b>Аудит</b><small>обследование</small></div>
