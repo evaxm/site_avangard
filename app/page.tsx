@@ -80,14 +80,20 @@ export default function Home() {
           <p className="microcopy">Первичная консультация и разбор задачи — бесплатно</p>
         </div>
 
-        <div className="machine" aria-label="Стилизованная схема столкновения БПЛА с защитной сеткой">
+        <div className="machine" aria-label="Схема защиты критически важного промышленного объекта от удара БПЛА">
           <div className="machine-bar">
             <span>Инженерный контур</span>
-            <span>Объект 86 / online</span>
+            <span>Объект защищён / online</span>
           </div>
           <div className="machine-screen">
             <div className="protection-net">
               <span>Защитная сетка</span>
+            </div>
+            <div className="protected-object" aria-hidden="true">
+              <span>Важный объект</span>
+              <div className="plant-building" />
+              <i className="plant-stack" />
+              <i className="plant-tank" />
             </div>
             <div className="drone" aria-hidden="true">
               <i className="drone-arm arm-one" />
@@ -105,7 +111,7 @@ export default function Home() {
               <i className="spark spark-three" />
               <i className="spark spark-four" />
             </div>
-            <div className="impact-caption">Перехват физическим контуром</div>
+            <div className="impact-caption">Сетка принимает удар · объект защищён</div>
           </div>
           <div className="metrics">
             <div><b>Аудит</b><small>обследование</small></div>
