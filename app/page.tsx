@@ -1,38 +1,38 @@
 const services = [
   {
-    code: "01 / PLAY",
-    title: "Фигурки и игрушки",
-    text: "Персонажи, миниатюры, декор и модели для творчества и коллекций.",
+    code: "01 / AUDIT",
+    title: "Обследование объекта",
+    text: "Анализируем территорию, критические зоны, действующую инфраструктуру и исходные требования.",
   },
   {
-    code: "02 / STYLE",
-    title: "Аксессуары",
-    text: "Украшения, органайзеры и предметы интерьера с индивидуальным дизайном.",
+    code: "02 / PROJECT",
+    title: "Проектирование",
+    text: "Разрабатываем комплексное решение, узлы, спецификации и рабочую документацию.",
   },
   {
-    code: "03 / PRO",
-    title: "Прототипы",
-    text: "Проверка формы, механики и эргономики до запуска изделия в серию.",
+    code: "03 / BUILD",
+    title: "Изготовление и монтаж",
+    text: "Организуем производство конструкций, поставку и выполнение монтажных работ на объекте.",
   },
   {
-    code: "04 / FIX",
-    title: "Детали",
-    text: "Корпуса, крепления, переходники и запчасти по модели или образцу.",
+    code: "04 / SERVICE",
+    title: "Сопровождение",
+    text: "Проводим приёмку, передаём документацию и рекомендации по эксплуатации системы.",
   },
 ];
 
 const steps = [
-  ["01", "Расскажите об идее", "Звонок или сообщение"],
-  ["02", "Пришлите модель или образец", "STL / STEP / фото"],
-  ["03", "Согласуем материал и стоимость", "Точный расчёт"],
-  ["04", "Напечатаем и сообщим о готовности", "Контроль качества"],
+  ["01", "Концепция защиты", "Модель угроз и схема"],
+  ["02", "Проектная документация", "Расчёты и спецификации"],
+  ["03", "Рабочая документация", "Чертежи и узлы"],
+  ["04", "Исполнительный комплект", "Акты и регламенты"],
 ];
 
 const advantages = [
-  ["Точная печать", "Современные FDM-принтеры и аккуратная настройка каждого проекта."],
-  ["Помощь с моделью", "Проверим ваш файл или разработаем дизайн с нуля по задаче."],
-  ["Разные материалы", "Подберём пластик под внешний вид, прочность и условия использования."],
-  ["Быстрый результат", "Согласуем реальный срок заранее и держим вас в курсе."],
+  ["Промышленные объекты", "Понимаем требования к производственным площадкам и непрерывности технологических процессов."],
+  ["Инженерные конструкции", "Прорабатываем защитные контуры с учётом геометрии, нагрузок и условий эксплуатации."],
+  ["Комплексная интеграция", "Увязываем физическую защиту с инфраструктурой и режимом работы конкретного объекта."],
+  ["Управление проектом", "Сохраняем логику решения от обследования до монтажа и передачи документации."],
 ];
 
 export default function Home() {
@@ -40,13 +40,15 @@ export default function Home() {
     <main>
       <header className="site-header">
         <div className="shell nav">
-          <a className="brand" href="#top" aria-label="3D Печать 86 — на главную">
-            3D ПЕЧАТЬ <b>86</b>
+          <a className="brand" href="#top" aria-label="Инженерная защита 86 — на главную">
+            ЗАЩИТА БПЛА <b>86</b>
           </a>
           <nav className="nav-links" aria-label="Основная навигация">
-            <a href="#services">Что печатаем</a>
-            <a href="#advantages">Почему мы</a>
-            <a href="#process">Как заказать</a>
+            <a href="#top">Главная</a>
+            <a href="#company">О компании</a>
+            <a href="#experience">Опыт команды</a>
+            <a href="#documents">Документы</a>
+            <a href="#contacts">Контакты</a>
           </nav>
           <a className="phone-pill" href="tel:+79954933770">
             +7 (995) 493-37-70
@@ -58,63 +60,63 @@ export default function Home() {
         <div className="hero-copy">
           <div className="eyebrow">
             <span className="live-dot" aria-hidden="true" />
-            Ханты-Мансийск · FDM-производство
+            Ханты-Мансийск · Инженерные решения
           </div>
           <h1>
-            Идея становится <span>объектом</span>
+            Инженерная система <span>защиты от БПЛА</span>
           </h1>
           <p className="lead">
-            Печатаем прототипы, детали, фигурки и уникальные изделия на заказ.
-            Поможем с моделью, подберём материал и точно воплотим задумку.
+            Проектирование и реализация комплексных решений для физической
+            защиты промышленных объектов.
           </p>
           <div className="hero-actions">
             <a className="button primary" href="#contacts">
-              Рассчитать заказ <span aria-hidden="true">→</span>
+              Обсудить объект <span aria-hidden="true">→</span>
             </a>
-            <a className="button secondary" href="#services">
-              Посмотреть возможности
+            <a className="button secondary" href="#company">
+              О компании
             </a>
           </div>
-          <p className="microcopy">Консультация по модели и материалу — бесплатно</p>
+          <p className="microcopy">Первичная консультация и разбор задачи — бесплатно</p>
         </div>
 
-        <div className="machine" aria-label="Стилизованная схема процесса 3D-печати">
+        <div className="machine" aria-label="Стилизованная инженерная схема защитного контура">
           <div className="machine-bar">
-            <span>Процесс печати</span>
-            <span>ХМ 86 / online</span>
+            <span>Инженерный контур</span>
+            <span>Объект 86 / online</span>
           </div>
           <div className="machine-screen">
             <div className="machine-rail" />
             <div className="nozzle" />
             <div className="beam" />
             <div className="printed-part">
-              <span>3D</span>
+              <span>86</span>
             </div>
             <div className="print-bed" />
           </div>
           <div className="metrics">
-            <div><b>0,2 мм</b><small>высота слоя</small></div>
-            <div><b>±0,1</b><small>точность</small></div>
-            <div><b>FDM</b><small>технология</small></div>
+            <div><b>Аудит</b><small>обследование</small></div>
+            <div><b>Проект</b><small>документация</small></div>
+            <div><b>Монтаж</b><small>реализация</small></div>
           </div>
         </div>
       </section>
 
-      <div className="materials shell" aria-label="Материалы для печати">
-        {["PLA", "PETG", "ABS", "ASA", "WOOD", "CARBON", "PC"].map((item) => (
+      <div className="materials shell" aria-label="Этапы реализации">
+        {["ОБСЛЕДОВАНИЕ", "КОНЦЕПЦИЯ", "ПРОЕКТ", "ПРОИЗВОДСТВО", "МОНТАЖ", "ПРИЁМКА"].map((item) => (
           <span key={item}>{item}</span>
         ))}
       </div>
 
-      <section className="section shell" id="services">
+      <section className="section shell" id="company">
         <div className="section-head">
           <div>
-            <span className="section-label">Возможности</span>
-            <h2>Печатаем то, что нужно именно вам</h2>
+            <span className="section-label">О компании</span>
+            <h2>Защита начинается с инженерной модели угроз</h2>
           </div>
           <p>
-            От единичного подарка до функционального прототипа. Разберём задачу
-            и предложим практичный способ производства.
+            Рассматриваем объект как единую систему: территорию, здания,
+            технологические зоны, маршруты персонала и действующие меры безопасности.
           </p>
         </div>
         <div className="service-grid">
@@ -129,12 +131,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="advantages" id="advantages">
+      <section className="advantages" id="experience">
         <div className="shell">
           <div className="section-head compact">
             <div>
-              <span className="section-label">Почему мы</span>
-              <h2>Технологично. Понятно. По вашей задаче.</h2>
+              <span className="section-label">Опыт команды</span>
+              <h2>Компетенции на стыке инженерных дисциплин</h2>
             </div>
           </div>
           <div className="advantage-grid">
@@ -151,22 +153,22 @@ export default function Home() {
 
       <section className="project-band shell">
         <div>
-          <span className="section-label">Есть только идея?</span>
-          <h2>Это уже достаточно, чтобы начать.</h2>
+          <span className="section-label">Комплексный подход</span>
+          <h2>Решение под конкретный объект.</h2>
         </div>
         <p>
-          Не обязательно разбираться в форматах и материалах. Опишите задачу,
-          покажите пример или пришлите фото — мы подскажем следующий шаг.
+          Не предлагаем типовую конструкцию. Учитываем конфигурацию площадки,
+          критические зоны, режим эксплуатации и требования заказчика.
         </p>
-        <a className="round-link" href="https://t.me/3d_pechat_86" target="_blank" rel="noreferrer" aria-label="Написать в Telegram">
+        <a className="round-link" href="#contacts" aria-label="Перейти к контактам">
           ↗
         </a>
       </section>
 
       <div className="shell bottom-grid">
-        <section className="steps" id="process">
-          <span className="section-label light">Как заказать</span>
-          <h2>От запроса до готовой детали</h2>
+        <section className="steps" id="documents">
+          <span className="section-label light">Документы</span>
+          <h2>Документированное решение</h2>
           <div className="step-list">
             {steps.map(([number, title, note]) => (
               <div className="step" key={number}>
@@ -179,11 +181,11 @@ export default function Home() {
         </section>
 
         <section className="contact" id="contacts">
-          <span className="section-label light">Связаться</span>
-          <h2>Обсудим ваш проект?</h2>
+          <span className="section-label light">Контакты</span>
+          <h2>Обсудим ваш объект?</h2>
           <p>
-            Подскажем, как лучше реализовать идею, и рассчитаем стоимость без
-            лишней технической сложности.
+            Для первого разговора достаточно описать площадку, критические зоны
+            и ожидаемый результат.
           </p>
           <div className="contact-links">
             <a href="tel:+79954933770">+7 (995) 493-37-70</a>
@@ -199,15 +201,15 @@ export default function Home() {
           >
             Ханты-Мансийск, Промышленная, 19
           </a>
-          <div className="open-status"><span /> Открыто · до 18:00</div>
+          <div className="open-status"><span /> На связи · до 18:00</div>
           <span className="contact-watermark" aria-hidden="true">86</span>
         </section>
       </div>
 
       <footer>
         <div className="shell footer-inner">
-          <span>3D ПЕЧАТЬ 86</span>
-          <span>FDM · Дизайн · Реверс-инжиниринг</span>
+          <span>ЗАЩИТА БПЛА 86</span>
+          <span>Проектирование · Реализация · Сопровождение</span>
           <span>Ханты-Мансийск</span>
         </div>
       </footer>

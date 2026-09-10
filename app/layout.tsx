@@ -19,47 +19,39 @@ export async function generateMetadata(): Promise<Metadata> {
   const host =
     requestHeaders.get("x-forwarded-host") ??
     requestHeaders.get("host") ??
-    "3d-pechat-86.sites.openai.com";
+    "pechat3d-khm-9954933770.evaa86.chatgpt.site";
   const protocol = requestHeaders.get("x-forwarded-proto") ?? "https";
   const siteUrl = new URL(`${protocol}://${host}`);
 
   return {
     metadataBase: siteUrl,
-    title: "3D-печать на заказ в Ханты-Мансийске | 3D Печать 86",
+    title: "Инженерная система защиты от БПЛА",
     description:
-      "Печать деталей, прототипов, фигурок и аксессуаров. Помощь с 3D-моделью, подбор материала и быстрые сроки.",
+      "Проектирование и реализация комплексных решений для физической защиты промышленных объектов.",
     keywords: [
-      "3D печать Ханты-Мансийск",
-      "3D печать на заказ",
-      "FDM печать",
-      "прототипирование",
-      "реверс-инжиниринг",
+      "защита от БПЛА",
+      "физическая защита промышленных объектов",
+      "инженерная защита",
+      "проектирование защитных систем",
+      "Ханты-Мансийск",
     ],
-    icons: {
-      icon: "/og.png",
-      shortcut: "/og.png",
-    },
     openGraph: {
       type: "website",
       locale: "ru_RU",
       url: siteUrl,
-      siteName: "3D Печать 86",
-      title: "Идея становится объектом",
-      description: "3D-печать на заказ в Ханты-Мансийске",
-      images: [{ url: new URL("/og.png", siteUrl), width: 1536, height: 1024, alt: "3D Печать 86" }],
+      siteName: "Инженерная защита 86",
+      title: "Инженерная система защиты от БПЛА",
+      description: "Комплексные решения для физической защиты промышленных объектов.",
     },
     twitter: {
-      card: "summary_large_image",
-      title: "3D Печать 86",
-      description: "3D-печать на заказ в Ханты-Мансийске",
-      images: [new URL("/og.png", siteUrl)],
+      card: "summary",
+      title: "Инженерная система защиты от БПЛА",
+      description: "Комплексные решения для физической защиты промышленных объектов.",
     },
   };
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ru">
       <body className={`${manrope.variable} ${spaceMono.variable}`}>{children}</body>
