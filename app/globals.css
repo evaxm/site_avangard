@@ -118,14 +118,18 @@ h1 span { color: transparent; -webkit-text-stroke: 1.5px var(--ink); }
 .card-mark { flex: 0 0 auto; display: grid; place-items: center; width: 35px; height: 35px; border: 1px solid var(--line); border-radius: 50%; color: var(--aqua); }
 .service-card h3 { margin: 20px 0 11px; font-size: 20px; line-height: 1.18; letter-spacing: -.025em; }
 .service-card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
-.advantages { padding-block: 88px; background: var(--paper); border-block: 1px solid var(--line); }
+.construction { padding-block: 88px; background: var(--paper); border-block: 1px solid var(--line); }
 .section-head.compact { margin-bottom: 46px; }
-.advantage-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--line); border-radius: 22px; overflow: hidden; }
-.advantage-grid article { min-height: 235px; padding: 26px; border-right: 1px solid var(--line); }
-.advantage-grid article:last-child { border: 0; }
-.advantage-grid span { color: var(--aqua); font-family: var(--font-space-mono), monospace; font-size: 11px; font-weight: 700; }
-.advantage-grid h3 { margin: 45px 0 12px; font-size: 20px; }
-.advantage-grid p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.construction figure { margin: 0; }
+.construction-overview { border: 1px solid var(--line); border-radius: 24px; overflow: hidden; background: #f5f7f7; }
+.construction-overview img { display: block; width: 100%; height: auto; }
+.construction figcaption { padding: 13px 16px 15px; color: var(--muted); background: var(--paper); font-family: var(--font-space-mono), monospace; font-size: 9px; font-weight: 700; line-height: 1.45; letter-spacing: .07em; text-transform: uppercase; }
+.construction-gallery { display: grid; grid-template-columns: 1.16fr .84fr; grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }
+.construction-card { min-width: 0; border: 1px solid var(--line); border-radius: 20px; overflow: hidden; background: #e8e9e5; }
+.construction-card.diagram { grid-row: 1 / span 2; }
+.construction-card img { display: block; width: 100%; object-fit: cover; }
+.construction-card.diagram img { height: auto; aspect-ratio: 4 / 3; }
+.construction-card.photo img { height: calc(100% - 42px); min-height: 220px; }
 .project-band { display: grid; grid-template-columns: 1.1fr .9fr auto; align-items: center; gap: 50px; padding-block: 72px; }
 .project-band p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.65; }
 .round-link { display: grid; place-items: center; width: 78px; height: 78px; border-radius: 50%; background: var(--lime); text-decoration: none; font-size: 29px; transition: transform .2s; }
@@ -197,8 +201,10 @@ footer { border-top: 1px solid var(--line); }
   .phone-pill { margin-left: auto; }
   .hero { grid-template-columns: 1fr; padding-top: 48px; }
   .machine { max-width: 620px; width: 100%; }
-  .service-grid, .advantage-grid { grid-template-columns: 1fr 1fr; }
-  .advantage-grid article { border-bottom: 1px solid var(--line); }
+  .service-grid { grid-template-columns: 1fr 1fr; }
+  .construction-gallery { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .construction-card.diagram { grid-column: 1 / -1; grid-row: auto; }
+  .construction-card.photo img { height: auto; min-height: 0; aspect-ratio: 4 / 3; }
   .project-band { grid-template-columns: 1fr; }
   .bottom-grid { grid-template-columns: 1fr; }
   .section-head { align-items: start; flex-direction: column; }
@@ -220,8 +226,8 @@ footer { border-top: 1px solid var(--line); }
   .machine-screen { height: 300px; }
   .materials { gap: 28px; }
   .section { padding-block: 70px; }
-  .service-grid, .advantage-grid { grid-template-columns: 1fr; }
-  .advantage-grid article { border-right: 0; }
+  .service-grid, .construction-gallery { grid-template-columns: 1fr; }
+  .construction-card.diagram { grid-column: auto; }
   .section-head h2, .project-band h2 { font-size: 39px; }
   .project-band { padding-block: 60px; gap: 28px; }
   .steps, .contact { min-height: auto; padding: 28px 22px; border-radius: 22px; }

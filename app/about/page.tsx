@@ -86,7 +86,7 @@ export default function AboutPage() {
           <nav className="nav-links" aria-label="Основная навигация">
             <Link href="/">Главная</Link>
             <Link href="/about" aria-current="page">О компании</Link>
-            <Link href="/#experience">Опыт команды</Link>
+            <Link href="/#construction">Конструкция системы</Link>
             <Link href="/#documents">Документы</Link>
             <Link href="/#contacts">Контакты</Link>
           </nav>

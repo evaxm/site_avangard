@@ -42,13 +42,6 @@ const steps = [
   ["04", "Исполнительный комплект", "Акты и регламенты"],
 ];
 
-const advantages = [
-  ["Промышленные объекты", "Понимаем требования к производственным площадкам и непрерывности технологических процессов."],
-  ["Инженерные конструкции", "Прорабатываем защитные контуры с учётом геометрии, нагрузок и условий эксплуатации."],
-  ["Комплексная интеграция", "Увязываем физическую защиту с инфраструктурой и режимом работы конкретного объекта."],
-  ["Управление проектом", "Сохраняем логику решения от обследования до монтажа и передачи документации."],
-];
-
 export default function Home() {
   return (
     <main>
@@ -60,7 +53,7 @@ export default function Home() {
           <nav className="nav-links" aria-label="Основная навигация">
             <a href="#top">Главная</a>
             <a href="/about">О компании</a>
-            <a href="#experience">Опыт команды</a>
+            <a href="#construction">Конструкция системы</a>
             <a href="#documents">Документы</a>
             <a href="#contacts">Контакты</a>
           </nav>
@@ -177,22 +170,61 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="advantages" id="experience">
+      <section className="construction" id="construction">
         <div className="shell">
           <div className="section-head compact">
             <div>
-              <span className="section-label">Опыт команды</span>
-              <h2>Компетенции на стыке инженерных дисциплин</h2>
+              <span className="section-label">Система защиты</span>
+              <h2>Конструкция системы защитной сетки</h2>
             </div>
+            <p>
+              Основные элементы конструкции, схема размещения и общий вид
+              установленной сетки.
+            </p>
           </div>
-          <div className="advantage-grid">
-            {advantages.map(([title, text], index) => (
-              <article key={title}>
-                <span>0{index + 1}</span>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </article>
-            ))}
+          <figure className="construction-overview">
+            <Image
+              src="/construction/system-overview.png"
+              alt="Схема основных элементов системы защитной сетки"
+              width={1672}
+              height={941}
+              sizes="(max-width: 620px) calc(100vw - 28px), (max-width: 980px) calc(100vw - 36px), (max-width: 1484px) calc(100vw - 64px), 1420px"
+              quality={92}
+            />
+            <figcaption>Состав и основные элементы защитной конструкции</figcaption>
+          </figure>
+          <div className="construction-gallery">
+            <figure className="construction-card diagram">
+              <Image
+                src="/construction/system-layout.png"
+                alt="Схема размещения защитной сетки вокруг группы промышленных ёмкостей"
+                width={1448}
+                height={1086}
+                sizes="(max-width: 980px) calc(100vw - 36px), 56vw"
+                quality={92}
+              />
+              <figcaption>Пример схемы размещения</figcaption>
+            </figure>
+            <figure className="construction-card photo">
+              <Image
+                src="/construction/net-view-01.jpg"
+                alt="Установленная защитная сетчатая конструкция, первый ракурс"
+                width={1448}
+                height={1086}
+                sizes="(max-width: 620px) calc(100vw - 28px), (max-width: 980px) calc(50vw - 25px), 38vw"
+              />
+              <figcaption>Общий вид конструкции · ракурс 01</figcaption>
+            </figure>
+            <figure className="construction-card photo">
+              <Image
+                src="/construction/net-view-02.jpg"
+                alt="Установленная защитная сетчатая конструкция, второй ракурс"
+                width={1448}
+                height={1086}
+                sizes="(max-width: 620px) calc(100vw - 28px), (max-width: 980px) calc(50vw - 25px), 38vw"
+              />
+              <figcaption>Общий вид конструкции · ракурс 02</figcaption>
+            </figure>
           </div>
         </div>
       </section>

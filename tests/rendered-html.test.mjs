@@ -23,7 +23,7 @@ async function render(pathname = "/") {
   );
 }
 
-test("server-renders the home page with all service images", async () => {
+test("server-renders the home page with service and construction images", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
@@ -39,15 +39,30 @@ test("server-renders the home page with all service images", async () => {
   assert.match(html, /alt="Проект защитной сетчатой конструкции для промышленного оборудования"/);
   assert.match(html, /alt="Монтаж защитной сетчатой конструкции на промышленном объекте"/);
   assert.match(html, /alt="Инженеры проверяют установленную защитную конструкцию на объекте"/);
+  assert.match(html, /Конструкция системы защитной сетки/);
+  assert.match(html, /alt="Схема основных элементов системы защитной сетки"/);
+  assert.match(html, /alt="Схема размещения защитной сетки вокруг группы промышленных ёмкостей"/);
+  assert.match(html, /alt="Установленная защитная сетчатая конструкция, первый ракурс"/);
+  assert.match(html, /alt="Установленная защитная сетчатая конструкция, второй ракурс"/);
+  assert.doesNotMatch(html, /Компетенции на стыке инженерных дисциплин/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|Building your site/i);
 });
 
-test("includes the optimized service image assets", async () => {
-  const assets = ["audit.jpg", "project.jpg", "build.jpg", "service.jpg"];
+test("includes the supplied image assets", async () => {
+  const assets = [
+    "public/services/audit.jpg",
+    "public/services/project.jpg",
+    "public/services/build.jpg",
+    "public/services/service.jpg",
+    "public/construction/system-overview.png",
+    "public/construction/system-layout.png",
+    "public/construction/net-view-01.jpg",
+    "public/construction/net-view-02.jpg",
+  ];
 
   await Promise.all(
     assets.map((asset) =>
-      access(new URL(`../public/services/${asset}`, import.meta.url)),
+      access(new URL(`../${asset}`, import.meta.url)),
     ),
   );
 });
