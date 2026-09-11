@@ -123,6 +123,19 @@ h1 span { color: transparent; -webkit-text-stroke: 1.5px var(--ink); }
 .card-mark { flex: 0 0 auto; display: grid; place-items: center; width: 35px; height: 35px; border: 1px solid var(--line); border-radius: 50%; color: var(--aqua); }
 .service-card h3 { margin: 20px 0 11px; font-size: 20px; line-height: 1.18; letter-spacing: -.025em; }
 .service-card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.object-scope { padding-block: 94px; color: white; background: var(--ink); }
+.object-scope-intro { display: grid; grid-template-columns: 1.08fr .72fr; align-items: end; gap: 70px; margin-bottom: 48px; }
+.object-scope-intro h2 { max-width: 900px; margin: 0; font-size: clamp(38px, 4.3vw, 66px); line-height: 1.02; letter-spacing: -.055em; }
+.object-scope-copy { display: grid; gap: 18px; }
+.object-scope-copy p { margin: 0; color: #bdc7cb; font-size: 14px; line-height: 1.72; }
+.object-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.object-card { min-width: 0; padding: 28px 30px 30px; border: 1px solid rgba(255,255,255,.16); border-radius: 20px; background: #202b30; }
+.object-card-head { display: grid; grid-template-columns: 44px 1fr; align-items: start; gap: 16px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,.13); }
+.object-card-head span { padding-top: 4px; color: var(--aqua); font-family: var(--font-space-mono), monospace; font-size: 10px; font-weight: 700; letter-spacing: .08em; }
+.object-card h3 { margin: 0; font-size: clamp(21px, 2vw, 28px); line-height: 1.16; letter-spacing: -.035em; }
+.object-card ul { display: grid; gap: 10px; margin: 22px 0 0; padding: 0; list-style: none; }
+.object-card li { position: relative; padding-left: 20px; color: #d4dcdf; font-size: 13px; line-height: 1.5; }
+.object-card li::before { content: "+"; position: absolute; left: 0; color: var(--lime); font-family: var(--font-space-mono), monospace; font-weight: 700; }
 .construction { padding-block: 88px; background: var(--paper); border-block: 1px solid var(--line); }
 .section-head.compact { margin-bottom: 46px; }
 .construction figure { margin: 0; }
@@ -233,6 +246,8 @@ footer { border-top: 1px solid var(--line); }
   .hero { grid-template-columns: 1fr; padding-top: 48px; }
   .machine { max-width: 620px; width: 100%; }
   .service-grid { grid-template-columns: 1fr 1fr; }
+  .object-scope-intro { grid-template-columns: 1fr; align-items: start; gap: 28px; }
+  .object-grid { grid-template-columns: 1fr; }
   .construction-gallery { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
   .construction-card.diagram { grid-column: 1 / -1; grid-row: auto; }
   .construction-card.photo img { height: auto; min-height: 0; aspect-ratio: 4 / 3; }
@@ -260,6 +275,10 @@ footer { border-top: 1px solid var(--line); }
   .impact, .impact-ring { left: 51%; }
   .materials { gap: 28px; }
   .section { padding-block: 70px; }
+  .object-scope { padding-block: 70px; }
+  .object-scope-intro h2 { font-size: 39px; }
+  .object-card { padding: 24px 21px 25px; }
+  .object-card-head { grid-template-columns: 35px 1fr; gap: 10px; }
   .service-grid, .construction-gallery { grid-template-columns: 1fr; }
   .construction-card.diagram { grid-column: auto; }
   .section-head h2, .project-band h2 { font-size: 39px; }

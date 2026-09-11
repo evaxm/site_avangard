@@ -48,6 +48,12 @@ test("server-renders the home page with service and construction images", async 
   assert.match(html, /Беспилотный аппарат/);
   assert.match(html, /Защищаемый объект/);
   assert.match(html, /БПЛА → касание сетки → остановка/);
+  assert.match(html, /Защитные ограждающие конструкции \(ЗОК\) для промышленных и/);
+  assert.match(html, /Объекты ТЭК/);
+  assert.match(html, /Атомная энергетика/);
+  assert.match(html, /Транспортная инфраструктура/);
+  assert.match(html, /Инфраструктура жизнеобеспечения/);
+  assert.match(html, /Газораспределительные станции \(ГРС\)/);
   assert.doesNotMatch(html, /Компетенции на стыке инженерных дисциплин/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|Building your site/i);
 });
