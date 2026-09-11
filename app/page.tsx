@@ -45,6 +45,8 @@ const steps = [
 const protectedObjectGroups = [
   {
     title: "Объекты ТЭК",
+    image: "/objects/tek.jpg",
+    imageAlt: "Резервуарный парк под защитной сетчатой конструкцией",
     items: [
       "Нефтеперерабатывающие и газоперерабатывающие предприятия",
       "Нефтебазы и склады ГСМ",
@@ -58,6 +60,8 @@ const protectedObjectGroups = [
   },
   {
     title: "Энергетические объекты",
+    image: "/objects/energy.jpg",
+    imageAlt: "Электрическая подстанция под защитной сетчатой конструкцией",
     items: [
       "Трансформаторные подстанции",
       "Автотрансформаторы и трансформаторные группы",
@@ -69,6 +73,8 @@ const protectedObjectGroups = [
   },
   {
     title: "Объекты связи и обработки данных",
+    image: "/objects/communications.jpg",
+    imageAlt: "Объект связи и обработки данных под защитной сетчатой конструкцией",
     items: [
       "Центры обработки данных",
       "Узлы связи",
@@ -78,6 +84,8 @@ const protectedObjectGroups = [
   },
   {
     title: "Промышленные объекты",
+    image: "/objects/industrial.jpg",
+    imageAlt: "Промышленное оборудование под защитной сетчатой конструкцией",
     items: [
       "Химические и нефтехимические предприятия",
       "Производства и склады взрывчатых веществ",
@@ -89,6 +97,8 @@ const protectedObjectGroups = [
   },
   {
     title: "Атомная энергетика",
+    image: "/objects/nuclear.jpg",
+    imageAlt: "Объект атомной энергетики под защитной сетчатой конструкцией",
     items: [
       "Объекты Росатома (Росэнергоатом, ТВЭЛ, ЯОК, Атомэнергомаш)",
       "АЭС и объекты ядерного цикла",
@@ -96,6 +106,8 @@ const protectedObjectGroups = [
   },
   {
     title: "Транспортная инфраструктура",
+    image: "/objects/transport.jpg",
+    imageAlt: "Железнодорожная инфраструктура под защитной сетчатой конструкцией",
     items: [
       "Тяговые подстанции РЖД",
       "Депо (ДЭПО, ПТОЛ)",
@@ -106,6 +118,8 @@ const protectedObjectGroups = [
   },
   {
     title: "Госструктуры и безопасность",
+    image: "/objects/government.jpg",
+    imageAlt: "Объект государственной инфраструктуры под защитной сетчатой конструкцией",
     items: [
       "Объекты Минобороны и силовых структур (склады, арсеналы, казармы)",
       "Административные здания органов власти",
@@ -114,6 +128,8 @@ const protectedObjectGroups = [
   },
   {
     title: "Инфраструктура жизнеобеспечения",
+    image: "/objects/lifesupport.jpg",
+    imageAlt: "Объект инфраструктуры жизнеобеспечения под защитной сетчатой конструкцией",
     items: [
       "Котельные и тепловые пункты",
       "Водозаборные узлы и станции водоподготовки",
@@ -287,15 +303,25 @@ export default function Home() {
           <div className="object-grid">
             {protectedObjectGroups.map((group, index) => (
               <article className="object-card" key={group.title}>
-                <div className="object-card-head">
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                  <h3>{group.title}</h3>
+                <div className="object-card-media">
+                  <Image
+                    src={group.image}
+                    alt={group.imageAlt}
+                    fill
+                    sizes="(max-width: 620px) calc(100vw - 48px), (max-width: 980px) calc(100vw - 56px), 48vw"
+                  />
                 </div>
-                <ul>
-                  {group.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
+                <div className="object-card-body">
+                  <div className="object-card-head">
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <h3>{group.title}</h3>
+                  </div>
+                  <ul>
+                    {group.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
               </article>
             ))}
           </div>

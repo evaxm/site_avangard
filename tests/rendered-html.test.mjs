@@ -54,6 +54,14 @@ test("server-renders the home page with service and construction images", async 
   assert.match(html, /Транспортная инфраструктура/);
   assert.match(html, /Инфраструктура жизнеобеспечения/);
   assert.match(html, /Газораспределительные станции \(ГРС\)/);
+  assert.match(html, /alt="Резервуарный парк под защитной сетчатой конструкцией"/);
+  assert.match(html, /alt="Электрическая подстанция под защитной сетчатой конструкцией"/);
+  assert.match(html, /alt="Объект связи и обработки данных под защитной сетчатой конструкцией"/);
+  assert.match(html, /alt="Промышленное оборудование под защитной сетчатой конструкцией"/);
+  assert.match(html, /alt="Объект атомной энергетики под защитной сетчатой конструкцией"/);
+  assert.match(html, /alt="Железнодорожная инфраструктура под защитной сетчатой конструкцией"/);
+  assert.match(html, /alt="Объект государственной инфраструктуры под защитной сетчатой конструкцией"/);
+  assert.match(html, /alt="Объект инфраструктуры жизнеобеспечения под защитной сетчатой конструкцией"/);
   assert.doesNotMatch(html, /Компетенции на стыке инженерных дисциплин/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|Building your site/i);
 });
@@ -68,6 +76,14 @@ test("includes the supplied image assets", async () => {
     "public/construction/system-layout.png",
     "public/construction/net-view-01.jpg",
     "public/construction/net-view-02.jpg",
+    "public/objects/tek.jpg",
+    "public/objects/energy.jpg",
+    "public/objects/communications.jpg",
+    "public/objects/industrial.jpg",
+    "public/objects/nuclear.jpg",
+    "public/objects/transport.jpg",
+    "public/objects/government.jpg",
+    "public/objects/lifesupport.jpg",
   ];
 
   await Promise.all(
