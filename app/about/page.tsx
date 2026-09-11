@@ -1,3 +1,6 @@
+import Image from "next/image";
+import Link from "next/link";
+
 const workGroups = [
   {
     number: "01",
@@ -77,15 +80,15 @@ export default function AboutPage() {
     <main>
       <header className="site-header">
         <div className="shell nav">
-          <a className="brand" href="/" aria-label="Защита БПЛА 86 — на главную">
+          <Link className="brand" href="/" aria-label="Защита БПЛА 86 — на главную">
             ЗАЩИТА БПЛА <b>86</b>
-          </a>
+          </Link>
           <nav className="nav-links" aria-label="Основная навигация">
-            <a href="/">Главная</a>
-            <a href="/about" aria-current="page">О компании</a>
-            <a href="/#experience">Опыт команды</a>
-            <a href="/#documents">Документы</a>
-            <a href="/#contacts">Контакты</a>
+            <Link href="/">Главная</Link>
+            <Link href="/about" aria-current="page">О компании</Link>
+            <Link href="/#experience">Опыт команды</Link>
+            <Link href="/#documents">Документы</Link>
+            <Link href="/#contacts">Контакты</Link>
           </nav>
           <a className="phone-pill" href="tel:+79954933770">
             +7 (995) 493-37-70
@@ -179,10 +182,13 @@ export default function AboutPage() {
                 </div>
                 <div className={"project-images count-" + project.images.length}>
                   {project.images.map((image, imageIndex) => (
-                    <img
+                    <Image
                       key={image}
                       src={"/company/project-" + image + ".jpg"}
                       alt={project.title + (project.images.length > 1 ? ", вид " + (imageIndex + 1) : "")}
+                      width={1280}
+                      height={853}
+                      sizes="(max-width: 620px) calc(100vw - 28px), (max-width: 980px) calc(50vw - 28px), 35vw"
                       loading="lazy"
                     />
                   ))}
@@ -203,17 +209,16 @@ export default function AboutPage() {
           добросовестном исполнении договорных обязательств и сотрудничестве
           по направлениям строительно-монтажных работ.
         </p>
-        <a className="round-link" href="/#contacts" aria-label="Перейти к контактам">↗</a>
+        <Link className="round-link" href="/#contacts" aria-label="Перейти к контактам">↗</Link>
       </section>
 
       <footer>
         <div className="shell footer-inner">
           <span>ЗАЩИТА БПЛА 86</span>
           <span>Строительство · Инженерные решения · Сопровождение</span>
-          <a href="/">На главную</a>
+          <Link href="/">На главную</Link>
         </div>
       </footer>
     </main>
   );
 }
-

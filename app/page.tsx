@@ -1,23 +1,37 @@
+import Image from "next/image";
+
 const services = [
   {
     code: "01 / AUDIT",
     title: "Обследование объекта",
     text: "Анализируем территорию, критические зоны, действующую инфраструктуру и исходные требования.",
+    image: "/services/audit.jpg",
+    imageAlt: "Инженеры обследуют промышленный объект и изучают его документацию",
+    imagePosition: "center center",
   },
   {
     code: "02 / PROJECT",
     title: "Проектирование",
     text: "Разрабатываем комплексное решение, узлы, спецификации и рабочую документацию.",
+    image: "/services/project.jpg",
+    imageAlt: "Проект защитной сетчатой конструкции для промышленного оборудования",
+    imagePosition: "center center",
   },
   {
     code: "03 / BUILD",
     title: "Изготовление и монтаж",
     text: "Организуем производство конструкций, поставку и выполнение монтажных работ на объекте.",
+    image: "/services/build.jpg",
+    imageAlt: "Монтаж защитной сетчатой конструкции на промышленном объекте",
+    imagePosition: "center 34%",
   },
   {
     code: "04 / SERVICE",
     title: "Сопровождение",
     text: "Проводим приёмку, передаём документацию и рекомендации по эксплуатации системы.",
+    image: "/services/service.jpg",
+    imageAlt: "Инженеры проверяют установленную защитную конструкцию на объекте",
+    imagePosition: "center center",
   },
 ];
 
@@ -141,10 +155,23 @@ export default function Home() {
         <div className="service-grid">
           {services.map((service) => (
             <article className="service-card" key={service.code}>
-              <span className="card-code">{service.code}</span>
-              <span className="card-mark" aria-hidden="true">↗</span>
-              <h3>{service.title}</h3>
-              <p>{service.text}</p>
+              <div className="service-card-media">
+                <Image
+                  src={service.image}
+                  alt={service.imageAlt}
+                  fill
+                  sizes="(max-width: 620px) calc(100vw - 52px), (max-width: 980px) calc(50vw - 39px), 25vw"
+                  style={{ objectPosition: service.imagePosition }}
+                />
+              </div>
+              <div className="service-card-body">
+                <div className="service-card-meta">
+                  <span className="card-code">{service.code}</span>
+                  <span className="card-mark" aria-hidden="true">↗</span>
+                </div>
+                <h3>{service.title}</h3>
+                <p>{service.text}</p>
+              </div>
             </article>
           ))}
         </div>
