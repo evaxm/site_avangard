@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { access } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 
 async function render(pathname = "/") {
@@ -90,5 +90,17 @@ test("includes the supplied image assets", async () => {
     assets.map((asset) =>
       access(new URL(`../${asset}`, import.meta.url)),
     ),
+  );
+});
+
+test("keeps the construction diagram at its content height", async () => {
+  const css = await readFile(
+    new URL("../app/globals.css", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(
+    css,
+    /\.construction-card\.diagram\s*\{[^}]*align-self:\s*start;/,
   );
 });
