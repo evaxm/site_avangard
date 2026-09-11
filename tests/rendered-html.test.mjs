@@ -44,6 +44,10 @@ test("server-renders the home page with service and construction images", async 
   assert.match(html, /alt="Схема размещения защитной сетки вокруг группы промышленных ёмкостей"/);
   assert.match(html, /alt="Установленная защитная сетчатая конструкция, первый ракурс"/);
   assert.match(html, /alt="Установленная защитная сетчатая конструкция, второй ракурс"/);
+  assert.match(html, /Анимация: БПЛА подлетает к защитной сетке и останавливается при касании/);
+  assert.match(html, /Беспилотный аппарат/);
+  assert.match(html, /Защищаемый объект/);
+  assert.match(html, /БПЛА → касание сетки → остановка/);
   assert.doesNotMatch(html, /Компетенции на стыке инженерных дисциплин/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|Building your site/i);
 });

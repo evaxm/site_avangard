@@ -92,12 +92,19 @@ export default function Home() {
             <span>Инженерный контур</span>
             <span>Объект защищён / online</span>
           </div>
-          <div className="machine-screen">
+          <div
+            className="machine-screen"
+            role="img"
+            aria-label="Анимация: БПЛА подлетает к защитной сетке и останавливается при касании, защищаемый объект остаётся за сеткой"
+          >
+            <div className="flight-path" aria-hidden="true">
+              <span>Траектория БПЛА</span>
+            </div>
             <div className="protection-net">
               <span>Защитная сетка</span>
             </div>
             <div className="protected-object" aria-hidden="true">
-              <span>Важный объект</span>
+              <span>Защищаемый объект</span>
               <div className="plant-building" />
               <i className="plant-stack" />
               <i className="plant-tank" />
@@ -110,7 +117,9 @@ export default function Home() {
               <span className="rotor rotor-three" />
               <span className="rotor rotor-four" />
               <div className="drone-core">БПЛА</div>
+              <span className="drone-label">Беспилотный аппарат</span>
             </div>
+            <span className="impact-ring" aria-hidden="true" />
             <div className="impact" aria-hidden="true">
               <b>СТОП</b>
               <i className="spark spark-one" />
@@ -118,7 +127,7 @@ export default function Home() {
               <i className="spark spark-three" />
               <i className="spark spark-four" />
             </div>
-            <div className="impact-caption">Сетка принимает удар · объект защищён</div>
+            <div className="impact-caption">БПЛА → касание сетки → остановка</div>
           </div>
           <div className="metrics">
             <div><b>Аудит</b><small>обследование</small></div>

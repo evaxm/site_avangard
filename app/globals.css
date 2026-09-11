@@ -65,28 +65,33 @@ h1 span { color: transparent; -webkit-text-stroke: 1.5px var(--ink); }
 .machine { align-self: center; padding: 22px; border: 1px solid var(--ink); border-radius: 28px; background: var(--paper); box-shadow: 14px 14px 0 var(--aqua); overflow: hidden; }
 .machine-bar { display: flex; justify-content: space-between; padding-bottom: 16px; border-bottom: 1px solid var(--line); font-family: var(--font-space-mono), monospace; font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 .machine-screen { height: 350px; margin-top: 20px; border-radius: 18px; background: #162126; position: relative; overflow: hidden; background-image: linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px); background-size: 25px 25px; }
+.flight-path { position: absolute; z-index: 1; left: 7%; top: 50%; width: 46%; border-top: 1px dashed rgba(223,249,90,.44); }
+.flight-path::after { content: ""; position: absolute; top: -4px; right: -1px; border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 7px solid var(--lime); }
+.flight-path span { position: absolute; left: 0; bottom: 12px; color: #b7c0c4; font-family: var(--font-space-mono), monospace; font-size: 7px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 .protection-net { position: absolute; z-index: 2; top: 24px; right: 26px; bottom: 24px; width: 43%; border: 2px solid var(--aqua); border-radius: 8px; background-image: linear-gradient(rgba(141,243,232,.72) 1px, transparent 1px), linear-gradient(90deg, rgba(141,243,232,.72) 1px, transparent 1px); background-size: 18px 18px; box-shadow: inset 0 0 32px rgba(28,200,189,.17), 0 0 20px rgba(28,200,189,.12); transform: perspective(440px) rotateY(-7deg); transform-origin: right center; }
 .protection-net span { position: absolute; right: 12px; bottom: 10px; padding: 5px 7px; color: #162126; background: var(--aqua); font-family: var(--font-space-mono), monospace; font-size: 7px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
-.protected-object { position: absolute; z-index: 1; top: 50%; right: 5%; width: 112px; height: 150px; transform: translateY(-50%); color: #dce5df; }
+.protected-object { position: absolute; z-index: 3; top: 50%; right: 3%; width: 168px; height: 190px; transform: translateY(-50%); color: #dce5df; filter: drop-shadow(0 13px 12px rgba(0,0,0,.34)); }
 .protected-object::before { content: ""; position: absolute; left: 0; right: 0; bottom: 7px; height: 5px; border-radius: 50%; background: #718087; box-shadow: 0 7px 15px rgba(0,0,0,.4); }
-.protected-object > span { position: absolute; top: 0; right: 0; padding: 5px 7px; border: 1px solid var(--lime); color: var(--lime); background: rgba(22,33,38,.82); font-family: var(--font-space-mono), monospace; font-size: 7px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
-.plant-building { position: absolute; left: 8px; bottom: 12px; width: 73px; height: 72px; border: 2px solid #aab6ae; border-radius: 5px 5px 0 0; background-color: #334039; background-image: linear-gradient(rgba(255,255,255,.13) 1px, transparent 1px), linear-gradient(90deg,rgba(255,255,255,.13) 1px,transparent 1px); background-size: 15px 15px; }
-.plant-building::before { content: ""; position: absolute; left: 10px; right: 10px; top: -17px; height: 16px; border: 2px solid #aab6ae; border-bottom: 0; background: #334039; clip-path: polygon(0 100%,22% 0,45% 100%,68% 0,100% 100%); }
-.plant-stack { position: absolute; left: 19px; bottom: 84px; width: 15px; height: 40px; border: 2px solid #aab6ae; border-radius: 3px 3px 0 0; background: #334039; }
-.plant-tank { position: absolute; right: 5px; bottom: 12px; width: 25px; height: 53px; border: 2px solid #aab6ae; border-radius: 12px 12px 3px 3px; background: #334039; }
-.drone { position: absolute; z-index: 4; left: 26%; top: 50%; width: 155px; height: 100px; transform: translate(-50%, -50%) rotate(4deg); filter: drop-shadow(0 15px 12px rgba(0,0,0,.35)); animation: drone-impact 3s ease-in-out infinite; }
-.drone-arm { position: absolute; z-index: 1; left: 37px; top: 47px; width: 86px; height: 6px; border-radius: 99px; background: #718087; }
+.protected-object > span { position: absolute; z-index: 3; top: 0; right: 0; padding: 6px 8px; border: 1px solid var(--lime); color: #162126; background: var(--lime); font-family: var(--font-space-mono), monospace; font-size: 8px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+.plant-building { position: absolute; left: 7px; bottom: 12px; width: 109px; height: 91px; border: 2px solid #f3f7f4; border-radius: 6px 6px 0 0; background-color: #aebbb5; background-image: linear-gradient(rgba(22,33,38,.18) 1px, transparent 1px), linear-gradient(90deg,rgba(22,33,38,.18) 1px,transparent 1px); background-size: 18px 18px; box-shadow: inset 0 0 24px rgba(255,255,255,.18); }
+.plant-building::before { content: ""; position: absolute; left: 12px; right: 12px; top: -22px; height: 21px; border: 2px solid #f3f7f4; border-bottom: 0; background: #8f9e97; clip-path: polygon(0 100%,22% 0,45% 100%,68% 0,100% 100%); }
+.plant-stack { position: absolute; left: 24px; bottom: 104px; width: 20px; height: 56px; border: 2px solid #f3f7f4; border-radius: 4px 4px 0 0; background: #8f9e97; }
+.plant-tank { position: absolute; right: 4px; bottom: 12px; width: 41px; height: 76px; border: 2px solid #f3f7f4; border-radius: 20px 20px 4px 4px; background: #aebbb5; }
+.drone { --drone-scale: 1; --drone-start: 17%; --drone-contact: 46%; position: absolute; z-index: 5; left: var(--drone-start); top: 50%; width: 180px; height: 112px; transform: translate(-50%, -50%) scale(var(--drone-scale)); filter: drop-shadow(0 15px 12px rgba(0,0,0,.35)); animation: drone-flight 5.2s ease-in-out infinite; }
+.drone-arm { position: absolute; z-index: 1; left: 43px; top: 53px; width: 99px; height: 7px; border-radius: 99px; background: #8d9a9f; }
 .drone-arm.arm-one { transform: rotate(28deg); }
 .drone-arm.arm-two { transform: rotate(-28deg); }
-.drone-core { position: absolute; z-index: 3; left: 48px; top: 34px; display: grid; place-items: center; width: 62px; height: 36px; border-radius: 13px 19px 19px 13px; color: #162126; background: var(--lime); font-family: var(--font-space-mono), monospace; font-size: 8px; font-weight: 700; }
+.drone-core { position: absolute; z-index: 3; left: 54px; top: 36px; display: grid; place-items: center; width: 76px; height: 42px; border-radius: 15px 22px 22px 15px; color: #162126; background: var(--lime); font-family: var(--font-space-mono), monospace; font-size: 10px; font-weight: 700; }
 .drone-core::after { content: ""; position: absolute; right: -13px; border-top: 9px solid transparent; border-bottom: 9px solid transparent; border-left: 15px solid var(--lime); }
-.rotor { position: absolute; z-index: 2; width: 39px; height: 16px; border: 3px solid var(--aqua); border-radius: 50%; background: rgba(22,33,38,.82); box-shadow: 0 0 0 3px rgba(28,200,189,.1); }
+.drone-label { position: absolute; z-index: 6; left: 43px; top: -9px; padding: 5px 7px; border: 1px solid rgba(223,249,90,.55); color: var(--lime); background: rgba(22,33,38,.9); font-family: var(--font-space-mono), monospace; font-size: 7px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; white-space: nowrap; }
+.rotor { position: absolute; z-index: 2; width: 45px; height: 18px; border: 3px solid var(--aqua); border-radius: 50%; background: rgba(22,33,38,.82); box-shadow: 0 0 0 3px rgba(28,200,189,.1); transform-origin: center; animation: rotor-spin .18s ease-in-out infinite alternate; }
 .rotor-one { left: 8px; top: 12px; }
-.rotor-two { right: 3px; top: 12px; }
+.rotor-two { right: 2px; top: 12px; }
 .rotor-three { left: 8px; bottom: 7px; }
-.rotor-four { right: 3px; bottom: 7px; }
-.impact { position: absolute; z-index: 7; left: 54%; top: 50%; display: grid; place-items: center; width: 112px; height: 112px; transform: translate(-50%, -50%); color: #162126; background: var(--lime); clip-path: polygon(50% 0,60% 28%,82% 8%,79% 37%,100% 39%,76% 54%,94% 75%,66% 69%,63% 100%,48% 74%,27% 96%,31% 67%,0 66%,25% 49%,4% 30%,35% 33%); filter: drop-shadow(0 0 15px rgba(223,249,90,.55)); animation: impact-pulse 1.35s ease-in-out infinite; }
-.impact b { font-family: var(--font-space-mono), monospace; font-size: 10px; letter-spacing: .04em; }
+.rotor-four { right: 2px; bottom: 7px; }
+.impact-ring { position: absolute; z-index: 6; left: 54%; top: 50%; width: 118px; height: 118px; border: 3px solid var(--lime); border-radius: 50%; opacity: 0; transform: translate(-50%, -50%) scale(.25); box-shadow: 0 0 18px rgba(223,249,90,.72), inset 0 0 18px rgba(223,249,90,.45); animation: impact-ring 5.2s ease-out infinite; }
+.impact { position: absolute; z-index: 7; left: 54%; top: 50%; display: grid; place-items: center; width: 112px; height: 112px; opacity: 0; transform: translate(-50%, -50%) scale(.2); color: #162126; background: var(--lime); clip-path: polygon(50% 0,60% 28%,82% 8%,79% 37%,100% 39%,76% 54%,94% 75%,66% 69%,63% 100%,48% 74%,27% 96%,31% 67%,0 66%,25% 49%,4% 30%,35% 33%); filter: drop-shadow(0 0 15px rgba(223,249,90,.55)); animation: impact-sequence 5.2s ease-out infinite; }
+.impact b { font-family: var(--font-space-mono), monospace; font-size: 12px; letter-spacing: .04em; }
 .spark { position: absolute; width: 7px; height: 7px; border-radius: 50%; background: var(--aqua); box-shadow: 0 0 9px var(--aqua); }
 .spark-one { left: -17px; top: 8px; }
 .spark-two { right: -24px; top: 21px; width: 5px; height: 5px; }
@@ -192,9 +197,35 @@ footer { border-top: 1px solid var(--line); }
 .about-cta { display: grid; grid-template-columns: 1.05fr .9fr auto; align-items: center; gap: 46px; padding-block: 85px; }
 .about-cta h2 { margin: 0; font-size: clamp(38px, 4vw, 60px); line-height: 1.02; letter-spacing: -.055em; }
 .about-cta p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.68; }
-@keyframes drone-impact { 0%,100% { transform: translate(-53%, -50%) rotate(1deg); } 45%,65% { transform: translate(-43%, -50%) rotate(5deg); } }
-@keyframes impact-pulse { 0%,100% { transform: translate(-50%, -50%) scale(.92) rotate(-2deg); } 50% { transform: translate(-50%, -50%) scale(1.08) rotate(2deg); } }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .drone, .impact { animation: none; } * { transition: none !important; } }
+@keyframes drone-flight {
+  0%, 14% { left: var(--drone-start); opacity: 1; transform: translate(-50%, -50%) scale(var(--drone-scale)) rotate(-2deg); }
+  49% { left: calc(var(--drone-contact) - 1%); opacity: 1; transform: translate(-50%, -50%) scale(var(--drone-scale)) rotate(2deg); }
+  53% { left: var(--drone-contact); opacity: 1; transform: translate(-50%, -50%) scale(var(--drone-scale)) rotate(4deg); }
+  56%, 72% { left: var(--drone-contact); opacity: 0; transform: translate(-50%, -50%) scale(var(--drone-scale)) rotate(8deg); }
+  73% { left: var(--drone-start); opacity: 0; transform: translate(-50%, -50%) scale(var(--drone-scale)) rotate(-2deg); }
+  79%, 100% { left: var(--drone-start); opacity: 1; transform: translate(-50%, -50%) scale(var(--drone-scale)) rotate(-2deg); }
+}
+@keyframes rotor-spin { from { transform: scaleX(.72); } to { transform: scaleX(1.12); } }
+@keyframes impact-sequence {
+  0%, 52% { opacity: 0; transform: translate(-50%, -50%) scale(.2) rotate(-10deg); }
+  55% { opacity: 1; transform: translate(-50%, -50%) scale(.82) rotate(-5deg); }
+  60% { opacity: 1; transform: translate(-50%, -50%) scale(1.16) rotate(3deg); }
+  68%, 72% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0); }
+  77%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(.72) rotate(6deg); }
+}
+@keyframes impact-ring {
+  0%, 53% { opacity: 0; transform: translate(-50%, -50%) scale(.25); }
+  56% { opacity: .92; transform: translate(-50%, -50%) scale(.48); }
+  69%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.45); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .drone { left: 20%; animation: none; }
+  .impact { opacity: 1; transform: translate(-50%, -50%) scale(1); animation: none; }
+  .impact-ring { opacity: .6; transform: translate(-50%, -50%) scale(1.15); animation: none; }
+  .rotor { animation: none; }
+  * { transition: none !important; }
+}
 @media (max-width: 980px) {
   .shell { width: min(100% - 36px, 760px); }
   .nav-links { display: none; }
@@ -224,6 +255,9 @@ footer { border-top: 1px solid var(--line); }
   .hero-actions, .button { width: 100%; }
   .machine { padding: 14px; border-radius: 20px; box-shadow: 8px 8px 0 var(--aqua); }
   .machine-screen { height: 300px; }
+  .drone { --drone-scale: .72; --drone-start: 20%; --drone-contact: 40%; }
+  .protected-object { right: -3%; transform: translateY(-50%) scale(.72); transform-origin: right center; }
+  .impact, .impact-ring { left: 51%; }
   .materials { gap: 28px; }
   .section { padding-block: 70px; }
   .service-grid, .construction-gallery { grid-template-columns: 1fr; }
