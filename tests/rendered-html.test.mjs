@@ -31,6 +31,24 @@ test("server-renders the home page with service and construction images", async 
   const html = await response.text();
   assert.match(html, /<title>Инженерная система защиты от БПЛА<\/title>/i);
   assert.match(html, /Инженерная система <span>защиты объектов от БПЛА<\/span>/);
+  assert.match(html, /src="\/brand-logo\.png"/);
+  assert.match(html, /class="mail-pill" href="mailto:evaa86@list\.ru">evaa86@list\.ru<\/a>/);
+  assert.doesNotMatch(html, /\/_vinext\/image/);
+  assert.match(html, /class="contact-email" href="mailto:evaa86@list\.ru">evaa86@list\.ru<\/a>/);
+  assert.match(html, />Ханты-Мансийск ↗<\/a>/);
+  assert.match(html, /<form[^>]*class="proposal-form"[^>]*action="mailto:evaa86@list\.ru"/);
+  assert.match(html, /name="Имя"/);
+  assert.match(html, /name="Телефон"/);
+  assert.match(html, /name="Почта"/);
+  assert.match(html, /name="Город"/);
+  assert.match(html, /<input(?=[^>]*type="checkbox")(?=[^>]*name="Согласие на обработку персональных данных")(?=[^>]*required)[^>]*>/);
+  assert.match(html, /href="\/policy"/);
+  assert.match(html, /Я ознакомлен\(а\) с/);
+  assert.match(html, /Получить КП/);
+  assert.match(html, /class="phone-input"[^>]*pattern=/);
+  assert.match(html, /placeholder="\+7 \(___\) ___-__-__"/);
+  assert.doesNotMatch(html, /Формат: \+7 900 000-00-00/);
+  assert.doesNotMatch(html, /3d_pechat_86|Промышленная, 19|На связи · до 18:00/i);
   assert.match(html, /Обследование объекта/);
   assert.match(html, /Проектирование/);
   assert.match(html, /Изготовление и монтаж/);
@@ -42,12 +60,19 @@ test("server-renders the home page with service and construction images", async 
   assert.match(html, /Конструкция системы защитной сетки/);
   assert.match(html, /alt="Схема основных элементов системы защитной сетки"/);
   assert.match(html, /alt="Схема размещения защитной сетки вокруг группы промышленных ёмкостей"/);
-  assert.match(html, /alt="Установленная защитная сетчатая конструкция, первый ракурс"/);
+  assert.match(html, /alt="Промышленная площадка с резервуарами под защитной сетчатой конструкцией"/);
   assert.match(html, /alt="Установленная защитная сетчатая конструкция, второй ракурс"/);
+  assert.match(html, /Анимация поэтапной сборки защитной конструкции вокруг объекта/);
+  assert.match(html, /Фундаментные блоки/);
+  assert.match(html, /Решётчатые опоры/);
+  assert.match(html, /Силовые тросы/);
+  assert.match(html, /Контур замкнут · объект защищён/);
   assert.match(html, /Анимация: БПЛА подлетает к защитной сетке и останавливается при касании/);
   assert.match(html, /Беспилотный аппарат/);
   assert.match(html, /Защищаемый объект/);
   assert.match(html, /БПЛА → касание сетки → остановка/);
+  assert.match(html, /Объект успешно защищён/);
+  assert.doesNotMatch(html, /Открыть крупнее/);
   assert.match(html, /Защитные ограждающие конструкции \(ЗОК\) для промышленных и/);
   assert.match(html, /Объекты ТЭК/);
   assert.match(html, /Атомная энергетика/);
@@ -66,15 +91,27 @@ test("server-renders the home page with service and construction images", async 
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|Building your site/i);
 });
 
+test("serves an empty policy page on this site", async () => {
+  const response = await render("/policy");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /Политика обработки персональных данных/);
+  assert.match(html, /class="policy-content"/);
+  assert.doesNotMatch(html, /ab-guard\.ru/);
+});
+
 test("includes the supplied image assets", async () => {
   const assets = [
     "public/services/audit.jpg",
     "public/services/project.jpg",
     "public/services/build.jpg",
     "public/services/service.jpg",
+    "public/brand-logo.png",
+    "public/about-hero.png",
     "public/construction/system-overview.png",
     "public/construction/system-layout.png",
-    "public/construction/net-view-01.jpg",
+    "public/construction/net-view-01.png",
     "public/construction/net-view-02.jpg",
     "public/objects/tek.jpg",
     "public/objects/energy.jpg",

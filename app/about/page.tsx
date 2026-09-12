@@ -80,8 +80,16 @@ export default function AboutPage() {
     <main>
       <header className="site-header">
         <div className="shell nav">
-          <Link className="brand" href="/" aria-label="Защита БПЛА 86 — на главную">
-            ЗАЩИТА БПЛА <b>86</b>
+          <Link className="brand" href="/" aria-label="Авангард — на главную">
+            <Image
+              className="brand-logo"
+              src="/brand-logo.png"
+              alt="Авангард"
+              width={1774}
+              height={887}
+              priority
+              unoptimized
+            />
           </Link>
           <nav className="nav-links" aria-label="Основная навигация">
             <Link href="/">Главная</Link>
@@ -90,9 +98,12 @@ export default function AboutPage() {
             <Link href="/#documents">Документы</Link>
             <Link href="/#contacts">Контакты</Link>
           </nav>
-          <a className="phone-pill" href="tel:+79954933770">
-            +7 (995) 493-37-70
-          </a>
+          <div className="header-contacts">
+            <a className="mail-pill" href="mailto:evaa86@list.ru">evaa86@list.ru</a>
+            <a className="phone-pill" href="tel:+79954933770">
+              +7 (995) 493-37-70
+            </a>
+          </div>
         </div>
       </header>
 
@@ -109,14 +120,25 @@ export default function AboutPage() {
           </p>
         </div>
         <aside className="about-summary">
-          <span className="summary-year">2026</span>
-          <h2>Команда с практическим опытом</h2>
-          <p>
-            Для расширения возможностей предприятия компания усилила
-            инженерно-техническое и административно-управленческое направление
-            специалистами с результативным опытом в строительстве.
-          </p>
-          <div className="summary-tag">Генеральный подряд · Строительно-монтажные работы</div>
+          <Image
+            className="about-summary-image"
+            src="/about-hero.png"
+            alt="Строительная площадка и проектная документация"
+            width={1672}
+            height={941}
+            priority
+            unoptimized
+          />
+          <div className="about-summary-content">
+            <span className="summary-year">2026</span>
+            <h2>Команда с практическим опытом</h2>
+            <p>
+              Для расширения возможностей предприятия компания усилила
+              инженерно-техническое и административно-управленческое направление
+              специалистами с результативным опытом в строительстве.
+            </p>
+            <div className="summary-tag">Генеральный подряд · Строительно-монтажные работы</div>
+          </div>
         </aside>
       </section>
 
@@ -126,15 +148,47 @@ export default function AboutPage() {
         ))}
       </div>
 
-      <section className="about-intro shell">
-        <span className="section-label">Опыт команды</span>
-        <div>
-          <h2>Строительные проекты разного масштаба и назначения</h2>
-          <p>
-            Специалисты команды выполняли функции генерального подрядчика в
-            коммерческих проектах, а также при строительстве объектов по
-            государственным и муниципальным контрактам.
-          </p>
+      <section className="project-gallery">
+        <div className="shell">
+          <div className="section-head compact project-head">
+            <div>
+              <span className="section-label light">Опыт команды · Реализованные объекты</span>
+              <h2>
+                <span>Строительные проекты</span>
+                <span className="project-head-accent">разного масштаба и назначения</span>
+              </h2>
+            </div>
+            <p>
+              Специалисты команды выполняли функции генерального подрядчика в
+              коммерческих проектах, а также при строительстве объектов по
+              государственным и муниципальным контрактам. Ниже представлена
+              подборка объектов и этапов работ из материалов компании.
+            </p>
+          </div>
+          <div className="project-list">
+            {projects.map((project, projectIndex) => (
+              <article className="project-item" key={project.title}>
+                <div className="project-meta">
+                  <span>{String(projectIndex + 1).padStart(2, "0")}</span>
+                  <h3>{project.title}</h3>
+                </div>
+                <div className={"project-images count-" + project.images.length}>
+                  {project.images.map((image, imageIndex) => (
+                    <Image
+                      key={image}
+                      src={"/company/project-" + image + ".jpg"}
+                      alt={project.title + (project.images.length > 1 ? ", вид " + (imageIndex + 1) : "")}
+                      width={1280}
+                      height={853}
+                      unoptimized
+                      sizes="(max-width: 620px) calc(100vw - 28px), (max-width: 980px) calc(50vw - 28px), 35vw"
+                      loading="lazy"
+                    />
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -158,41 +212,6 @@ export default function AboutPage() {
                 <ul>
                   {group.items.map((item) => <li key={item}>{item}</li>)}
                 </ul>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="project-gallery">
-        <div className="shell">
-          <div className="section-head compact project-head">
-            <div>
-              <span className="section-label light">Реализованные объекты</span>
-              <h2>Проекты специалистов команды</h2>
-            </div>
-            <p>Подборка объектов и этапов работ из материалов компании.</p>
-          </div>
-          <div className="project-list">
-            {projects.map((project, projectIndex) => (
-              <article className="project-item" key={project.title}>
-                <div className="project-meta">
-                  <span>{String(projectIndex + 1).padStart(2, "0")}</span>
-                  <h3>{project.title}</h3>
-                </div>
-                <div className={"project-images count-" + project.images.length}>
-                  {project.images.map((image, imageIndex) => (
-                    <Image
-                      key={image}
-                      src={"/company/project-" + image + ".jpg"}
-                      alt={project.title + (project.images.length > 1 ? ", вид " + (imageIndex + 1) : "")}
-                      width={1280}
-                      height={853}
-                      sizes="(max-width: 620px) calc(100vw - 28px), (max-width: 980px) calc(50vw - 28px), 35vw"
-                      loading="lazy"
-                    />
-                  ))}
-                </div>
               </article>
             ))}
           </div>

@@ -1,4 +1,6 @@
 import Image from "next/image";
+import type { CSSProperties } from "react";
+import PhoneInput from "./PhoneInput";
 
 const services = [
   {
@@ -145,8 +147,16 @@ export default function Home() {
     <main>
       <header className="site-header">
         <div className="shell nav">
-          <a className="brand" href="#top" aria-label="Инженерная защита 86 — на главную">
-            ЗАЩИТА БПЛА <b>86</b>
+          <a className="brand" href="#top" aria-label="Авангард — на главную">
+            <Image
+              className="brand-logo"
+              src="/brand-logo.png"
+              alt="Авангард"
+              width={1774}
+              height={887}
+              priority
+              unoptimized
+            />
           </a>
           <nav className="nav-links" aria-label="Основная навигация">
             <a href="#top">Главная</a>
@@ -155,9 +165,12 @@ export default function Home() {
             <a href="#documents">Документы</a>
             <a href="#contacts">Контакты</a>
           </nav>
-          <a className="phone-pill" href="tel:+79954933770">
-            +7 (995) 493-37-70
-          </a>
+          <div className="header-contacts">
+            <a className="mail-pill" href="mailto:evaa86@list.ru">evaa86@list.ru</a>
+            <a className="phone-pill" href="tel:+79954933770">
+              +7 (995) 493-37-70
+            </a>
+          </div>
         </div>
       </header>
 
@@ -193,7 +206,7 @@ export default function Home() {
           <div
             className="machine-screen"
             role="img"
-            aria-label="Анимация: БПЛА подлетает к защитной сетке и останавливается при касании, защищаемый объект остаётся за сеткой"
+            aria-label="Анимация: БПЛА подлетает к защитной сетке и останавливается при касании, после чего появляется сообщение об успешной защите объекта"
           >
             <div className="flight-path" aria-hidden="true">
               <span>Траектория БПЛА</span>
@@ -224,6 +237,9 @@ export default function Home() {
               <i className="spark spark-two" />
               <i className="spark spark-three" />
               <i className="spark spark-four" />
+            </div>
+            <div className="protection-success" aria-hidden="true">
+              <i /> Объект успешно защищён
             </div>
             <div className="impact-caption">БПЛА → касание сетки → остановка</div>
           </div>
@@ -260,6 +276,7 @@ export default function Home() {
                   src={service.image}
                   alt={service.imageAlt}
                   fill
+                  unoptimized
                   sizes="(max-width: 620px) calc(100vw - 52px), (max-width: 980px) calc(50vw - 39px), 25vw"
                   style={{ objectPosition: service.imagePosition }}
                 />
@@ -274,6 +291,111 @@ export default function Home() {
               </div>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="construction" id="construction">
+        <div className="shell">
+          <div className="section-head compact">
+            <div>
+              <span className="section-label">Система защиты</span>
+              <h2>Конструкция системы защитной сетки</h2>
+            </div>
+            <p>
+              Основные элементы конструкции, схема размещения и общий вид
+              установленной сетки.
+            </p>
+          </div>
+          <div className="assembly-demo" aria-label="Анимация поэтапной сборки защитной конструкции вокруг объекта">
+            <div className="assembly-demo-head">
+              <span>Сценарий монтажа / 01—04</span>
+              <span className="assembly-demo-status"><i aria-hidden="true" /> Система собирается</span>
+            </div>
+            <div className="assembly-screen">
+              <div className="assembly-object" aria-label="Защищаемый промышленный объект">
+                <span className="assembly-object-roof" />
+                <span className="assembly-object-body" />
+                <span className="assembly-object-pipe" />
+                <b>Объект</b>
+              </div>
+
+              {["a", "b", "c", "d"].map((position) => (
+                <span className={`assembly-base assembly-${position}`} key={`base-${position}`} />
+              ))}
+              {["a", "b", "c", "d"].map((position) => (
+                <span className={`assembly-mast assembly-${position}`} key={`mast-${position}`} />
+              ))}
+
+              <span className="assembly-cable cable-left" />
+              <span className="assembly-cable cable-right" />
+              <span className="assembly-cable cable-top-left" />
+              <span className="assembly-cable cable-top-right" />
+              <div className="assembly-net" aria-hidden="true" />
+              <div className="assembly-ready">Контур замкнут · объект защищён</div>
+            </div>
+            <ol className="assembly-timeline">
+              <li style={{ "--stage": 0 } as CSSProperties}><b>01</b><span>Фундаментные блоки</span></li>
+              <li style={{ "--stage": 1 } as CSSProperties}><b>02</b><span>Решётчатые опоры</span></li>
+              <li style={{ "--stage": 2 } as CSSProperties}><b>03</b><span>Силовые тросы</span></li>
+              <li style={{ "--stage": 3 } as CSSProperties}><b>04</b><span>Защитная сетка</span></li>
+            </ol>
+          </div>
+          <figure className="construction-overview">
+            <a className="construction-image-link" href="/construction/system-overview.png" target="_blank" rel="noreferrer" aria-label="Открыть схему основных элементов в полном размере">
+              <Image
+                src="/construction/system-overview.png"
+                alt="Схема основных элементов системы защитной сетки"
+                width={1672}
+                height={941}
+                unoptimized
+                sizes="(max-width: 620px) calc(100vw - 56px), (max-width: 980px) calc(100vw - 72px), 1040px"
+                quality={92}
+              />
+            </a>
+            <figcaption>Состав и основные элементы защитной конструкции</figcaption>
+          </figure>
+          <div className="construction-gallery">
+            <figure className="construction-card diagram">
+              <a className="construction-image-link" href="/construction/system-layout.png" target="_blank" rel="noreferrer" aria-label="Открыть схему размещения в полном размере">
+                <Image
+                  src="/construction/system-layout.png"
+                  alt="Схема размещения защитной сетки вокруг группы промышленных ёмкостей"
+                  width={1448}
+                  height={1086}
+                  unoptimized
+                  sizes="(max-width: 620px) 82vw, (max-width: 980px) 31vw, 350px"
+                  quality={92}
+                />
+              </a>
+              <figcaption>Пример схемы размещения</figcaption>
+            </figure>
+            <figure className="construction-card photo">
+              <a className="construction-image-link" href="/construction/net-view-01.png" target="_blank" rel="noreferrer" aria-label="Открыть фотографию конструкции, первый ракурс">
+                <Image
+                  src="/construction/net-view-01.png"
+                  alt="Промышленная площадка с резервуарами под защитной сетчатой конструкцией"
+                  width={1254}
+                  height={1254}
+                  unoptimized
+                  sizes="(max-width: 620px) 82vw, (max-width: 980px) 31vw, 350px"
+                />
+              </a>
+              <figcaption>Общий вид конструкции · ракурс 01</figcaption>
+            </figure>
+            <figure className="construction-card photo">
+              <a className="construction-image-link" href="/construction/net-view-02.jpg" target="_blank" rel="noreferrer" aria-label="Открыть фотографию конструкции, второй ракурс">
+                <Image
+                  src="/construction/net-view-02.jpg"
+                  alt="Установленная защитная сетчатая конструкция, второй ракурс"
+                  width={1448}
+                  height={1086}
+                  unoptimized
+                  sizes="(max-width: 620px) 82vw, (max-width: 980px) 31vw, 350px"
+                />
+              </a>
+              <figcaption>Общий вид конструкции · ракурс 02</figcaption>
+            </figure>
+          </div>
         </div>
       </section>
 
@@ -308,6 +430,7 @@ export default function Home() {
                     src={group.image}
                     alt={group.imageAlt}
                     fill
+                    unoptimized
                     sizes="(max-width: 620px) calc(100vw - 48px), (max-width: 980px) calc(100vw - 56px), 48vw"
                   />
                 </div>
@@ -324,65 +447,6 @@ export default function Home() {
                 </div>
               </article>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="construction" id="construction">
-        <div className="shell">
-          <div className="section-head compact">
-            <div>
-              <span className="section-label">Система защиты</span>
-              <h2>Конструкция системы защитной сетки</h2>
-            </div>
-            <p>
-              Основные элементы конструкции, схема размещения и общий вид
-              установленной сетки.
-            </p>
-          </div>
-          <figure className="construction-overview">
-            <Image
-              src="/construction/system-overview.png"
-              alt="Схема основных элементов системы защитной сетки"
-              width={1672}
-              height={941}
-              sizes="(max-width: 620px) calc(100vw - 28px), (max-width: 980px) calc(100vw - 36px), (max-width: 1484px) calc(100vw - 64px), 1420px"
-              quality={92}
-            />
-            <figcaption>Состав и основные элементы защитной конструкции</figcaption>
-          </figure>
-          <div className="construction-gallery">
-            <figure className="construction-card diagram">
-              <Image
-                src="/construction/system-layout.png"
-                alt="Схема размещения защитной сетки вокруг группы промышленных ёмкостей"
-                width={1448}
-                height={1086}
-                sizes="(max-width: 980px) calc(100vw - 36px), 56vw"
-                quality={92}
-              />
-              <figcaption>Пример схемы размещения</figcaption>
-            </figure>
-            <figure className="construction-card photo">
-              <Image
-                src="/construction/net-view-01.jpg"
-                alt="Установленная защитная сетчатая конструкция, первый ракурс"
-                width={1448}
-                height={1086}
-                sizes="(max-width: 620px) calc(100vw - 28px), (max-width: 980px) calc(50vw - 25px), 38vw"
-              />
-              <figcaption>Общий вид конструкции · ракурс 01</figcaption>
-            </figure>
-            <figure className="construction-card photo">
-              <Image
-                src="/construction/net-view-02.jpg"
-                alt="Установленная защитная сетчатая конструкция, второй ракурс"
-                width={1448}
-                height={1086}
-                sizes="(max-width: 620px) calc(100vw - 28px), (max-width: 980px) calc(50vw - 25px), 38vw"
-              />
-              <figcaption>Общий вид конструкции · ракурс 02</figcaption>
-            </figure>
           </div>
         </div>
       </section>
@@ -417,27 +481,69 @@ export default function Home() {
         </section>
 
         <section className="contact" id="contacts">
-          <span className="section-label light">Контакты</span>
-          <h2>Обсудим ваш объект?</h2>
-          <p>
-            Для первого разговора достаточно описать площадку, критические зоны
-            и ожидаемый результат.
-          </p>
-          <div className="contact-links">
-            <a href="tel:+79954933770">+7 (995) 493-37-70</a>
-            <a href="https://t.me/3d_pechat_86" target="_blank" rel="noreferrer">
-              @3d_pechat_86 <span aria-hidden="true">↗</span>
-            </a>
+          <div className="contact-layout">
+            <div className="contact-intro">
+              <span className="section-label light">Контакты</span>
+              <h2>Обсудим ваш объект?</h2>
+              <p>
+                Для первого разговора достаточно описать площадку, критические зоны
+                и ожидаемый результат.
+              </p>
+              <div className="contact-links">
+                <a href="tel:+79954933770">+7 (995) 493-37-70</a>
+                <a className="contact-email" href="mailto:evaa86@list.ru">evaa86@list.ru</a>
+              </div>
+              <a
+                className="address"
+                href="https://yandex.ru/maps/?text=Ханты-Мансийск"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Ханты-Мансийск ↗
+              </a>
+            </div>
+
+            <div className="proposal-card">
+              <div className="proposal-heading">
+                <span>Коммерческое предложение</span>
+                <h3>Получить расчёт для вашего объекта</h3>
+              </div>
+              <form
+                className="proposal-form"
+                action="mailto:evaa86@list.ru"
+                method="post"
+                encType="text/plain"
+              >
+                <label className="form-field">
+                  <span>Имя</span>
+                  <input type="text" name="Имя" autoComplete="name" placeholder="Как к вам обращаться" required />
+                </label>
+                <label className="form-field">
+                  <span>Телефон</span>
+                  <PhoneInput />
+                </label>
+                <label className="form-field">
+                  <span>Почта</span>
+                  <input type="email" name="Почта" autoComplete="email" placeholder="name@company.ru" required />
+                </label>
+                <label className="form-field">
+                  <span>Город</span>
+                  <input type="text" name="Город" autoComplete="address-level2" placeholder="Город размещения объекта" required />
+                </label>
+                <label className="privacy-consent">
+                  <input type="checkbox" name="Согласие на обработку персональных данных" required />
+                  <span>
+                    Я ознакомлен(а) с{" "}
+                    <a href="/policy">
+                      Политикой обработки персональных данных
+                    </a>{" "}
+                    и даю согласие на обработку моих персональных данных в целях обработки обращения и предоставления ответа на запрос.
+                  </span>
+                </label>
+                <button type="submit">Получить КП <span aria-hidden="true">→</span></button>
+              </form>
+            </div>
           </div>
-          <a
-            className="address"
-            href="https://yandex.ru/maps/?text=Ханты-Мансийск%2C%20Промышленная%2C%2019"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Ханты-Мансийск, Промышленная, 19
-          </a>
-          <div className="open-status"><span /> На связи · до 18:00</div>
           <span className="contact-watermark" aria-hidden="true">86</span>
         </section>
       </div>
