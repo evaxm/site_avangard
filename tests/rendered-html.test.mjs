@@ -30,7 +30,7 @@ test("server-renders the home page with service and construction images", async 
 
   const html = await response.text();
   assert.match(html, /<title>Инженерная система защиты от БПЛА<\/title>/i);
-  assert.match(html, /Инженерная система/);
+  assert.match(html, /Инженерная система <span>защиты объектов от БПЛА<\/span>/);
   assert.match(html, /Обследование объекта/);
   assert.match(html, /Проектирование/);
   assert.match(html, /Изготовление и монтаж/);
