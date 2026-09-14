@@ -143,3 +143,20 @@ test("keeps the construction diagram at its content height", async () => {
     /\.construction-card\.diagram\s*\{[^}]*align-self:\s*start;/,
   );
 });
+
+test("keeps long-distance anchor navigation immediately scrollable", async () => {
+  const css = await readFile(
+    new URL("../app/globals.css", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(css, /html\s*\{[^}]*scroll-behavior:\s*auto;/);
+  assert.doesNotMatch(css, /html\s*\{[^}]*scroll-behavior:\s*smooth;/);
+
+  const navigation = await readFile(
+    new URL("../app/AnchorNavigation.tsx", import.meta.url),
+    "utf8",
+  );
+  assert.match(navigation, /a\[href\^=\"#\"\]/);
+  assert.match(navigation, /link\.blur\(\)/);
+});
