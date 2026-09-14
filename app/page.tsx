@@ -166,7 +166,7 @@ export default function Home() {
             <a href="#contacts">Контакты</a>
           </nav>
           <div className="header-contacts">
-            <a className="mail-pill" href="mailto:evaa86@list.ru">evaa86@list.ru</a>
+            <span className="mail-pill">ваша почта@</span>
             <a className="phone-pill" href="tel:+79954933770">
               +7 (995) 493-37-70
             </a>
@@ -500,7 +500,7 @@ export default function Home() {
               </p>
               <div className="contact-links">
                 <a href="tel:+79954933770">+7 (995) 493-37-70</a>
-                <a className="contact-email" href="mailto:evaa86@list.ru">evaa86@list.ru</a>
+                <span className="contact-email">ваша почта@</span>
               </div>
               <a
                 className="address"

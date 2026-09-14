@@ -32,9 +32,10 @@ test("server-renders the home page with service and construction images", async 
   assert.match(html, /<title>Инженерная система защиты от БПЛА<\/title>/i);
   assert.match(html, /Инженерная система <span>защиты объектов от БПЛА<\/span>/);
   assert.match(html, /src="\/brand-logo\.png"/);
-  assert.match(html, /class="mail-pill" href="mailto:evaa86@list\.ru">evaa86@list\.ru<\/a>/);
+  assert.match(html, /<span class="mail-pill">ваша почта@<\/span>/);
   assert.doesNotMatch(html, /\/_vinext\/image/);
-  assert.match(html, /class="contact-email" href="mailto:evaa86@list\.ru">evaa86@list\.ru<\/a>/);
+  assert.match(html, /<span class="contact-email">ваша почта@<\/span>/);
+  assert.doesNotMatch(html, /evaa86@list\.ru|mailto:/);
   assert.match(html, />Ханты-Мансийск ↗<\/a>/);
   assert.match(html, /<form[^>]*class="proposal-form"[^>]*action="\/api\/inquiry\.php"/);
   assert.match(html, /name="Имя"/);

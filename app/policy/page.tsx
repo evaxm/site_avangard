@@ -25,7 +25,7 @@ export default function PolicyPage() {
             <Link href="/#contacts">Контакты</Link>
           </nav>
           <div className="header-contacts">
-            <a className="mail-pill" href="mailto:evaa86@list.ru">evaa86@list.ru</a>
+            <span className="mail-pill">ваша почта@</span>
             <a className="phone-pill" href="tel:+79954933770">+7 (995) 493-37-70</a>
           </div>
         </div>
