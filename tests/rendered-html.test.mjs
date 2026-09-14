@@ -144,7 +144,7 @@ test("keeps the construction diagram at its content height", async () => {
   );
 });
 
-test("keeps native anchor navigation immediately scrollable", async () => {
+test("keeps anchor navigation immediately scrollable", async () => {
   const css = await readFile(
     new URL("../app/globals.css", import.meta.url),
     "utf8",
@@ -159,5 +159,14 @@ test("keeps native anchor navigation immediately scrollable", async () => {
   assert.doesNotMatch(css, /main\s*\{[^}]*overflow-x:/);
 
   const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
-  assert.doesNotMatch(page, /AnchorNavigation/);
+  const navigation = await readFile(
+    new URL("../app/AnchorNavigation.tsx", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(page, /<AnchorNavigation\s*\/>/);
+  assert.match(navigation, /event\.preventDefault\(\)/);
+  assert.match(navigation, /history\.replaceState/);
+  assert.match(navigation, /window\.scrollTo/);
+  assert.doesNotMatch(navigation, /location\.hash\s*=/);
 });

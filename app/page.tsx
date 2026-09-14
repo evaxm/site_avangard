@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
+import AnchorNavigation from "./AnchorNavigation";
 import ProposalForm from "./ProposalForm";
 
 const services = [
@@ -145,6 +146,7 @@ const protectedObjectGroups = [
 export default function Home() {
   return (
     <main>
+      <AnchorNavigation />
       <header className="site-header">
         <div className="shell nav">
           <a className="brand" href="#top" aria-label="Авангард — на главную">
