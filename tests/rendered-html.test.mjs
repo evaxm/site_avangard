@@ -160,5 +160,5 @@ test("keeps long-distance anchor navigation immediately scrollable", async () =>
     "utf8",
   );
   assert.match(navigation, /a\[href\^=\"#\"\]/);
-  assert.match(navigation, /link\.blur\(\)/);
+  assert.match(navigation, /target\.focus\(\{ preventScroll: true \}\)/);
 });

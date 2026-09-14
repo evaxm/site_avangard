@@ -10,7 +10,15 @@ export function AnchorNavigation() {
       const link = event.target.closest<HTMLAnchorElement>('a[href^="#"]');
       if (!link) return;
 
-      link.blur();
+      const target = document.getElementById(
+        decodeURIComponent(link.hash.slice(1)),
+      );
+      if (!target) return;
+
+      requestAnimationFrame(() => {
+        target.tabIndex = -1;
+        target.focus({ preventScroll: true });
+      });
     };
 
     document.addEventListener("click", releasePointerFocus);
