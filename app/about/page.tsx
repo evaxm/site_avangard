@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import ArrowUpRightIcon from "../ArrowUpRightIcon";
+import SiteHeader from "../SiteHeader";
 
 const workGroups = [
   {
@@ -78,34 +80,7 @@ const projects = [
 export default function AboutPage() {
   return (
     <main>
-      <header className="site-header">
-        <div className="shell nav">
-          <Link className="brand" href="/" aria-label="Авангард — на главную">
-            <Image
-              className="brand-logo"
-              src="/brand-logo.png"
-              alt="Авангард"
-              width={1774}
-              height={887}
-              priority
-              unoptimized
-            />
-          </Link>
-          <nav className="nav-links" aria-label="Основная навигация">
-            <Link href="/">Главная</Link>
-            <Link href="/about" aria-current="page">О компании</Link>
-            <Link href="/#construction">Конструкция системы</Link>
-            <Link href="/#documents">Документы</Link>
-            <Link href="/#contacts">Контакты</Link>
-          </nav>
-          <div className="header-contacts">
-            <span className="mail-pill">ваша почта@</span>
-            <a className="phone-pill" href="tel:+79954933770">
-              +7 (995) 493-37-70
-            </a>
-          </div>
-        </div>
-      </header>
+      <SiteHeader current="about" />
 
       <section className="about-hero shell">
         <div className="about-heading">
@@ -228,7 +203,7 @@ export default function AboutPage() {
           добросовестном исполнении договорных обязательств и сотрудничестве
           по направлениям строительно-монтажных работ.
         </p>
-        <Link className="round-link" href="/#contacts" aria-label="Перейти к контактам">↗</Link>
+        <Link className="round-link" href="/#contacts" aria-label="Перейти к контактам"><ArrowUpRightIcon /></Link>
       </section>
 
       <footer>

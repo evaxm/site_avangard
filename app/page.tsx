@@ -1,7 +1,9 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
 import AnchorNavigation from "./AnchorNavigation";
+import ArrowUpRightIcon from "./ArrowUpRightIcon";
 import ProposalForm from "./ProposalForm";
+import SiteHeader from "./SiteHeader";
 
 const services = [
   {
@@ -45,136 +47,11 @@ const steps = [
   ["04", "Исполнительный комплект", "Акты и регламенты"],
 ];
 
-const protectedObjectGroups = [
-  {
-    title: "Объекты ТЭК",
-    image: "/objects/tek.jpg",
-    imageAlt: "Резервуарный парк под защитной сетчатой конструкцией",
-    items: [
-      "Нефтеперерабатывающие и газоперерабатывающие предприятия",
-      "Нефтебазы и склады ГСМ",
-      "Резервуарные парки",
-      "Наливные терминалы и эстакады",
-      "Газораспределительные пункты",
-      "Компрессорные и насосные станции",
-      "Объекты газотранспортной инфраструктуры",
-      "Объекты добычи нефти и газа",
-    ],
-  },
-  {
-    title: "Энергетические объекты",
-    image: "/objects/energy.jpg",
-    imageAlt: "Электрическая подстанция под защитной сетчатой конструкцией",
-    items: [
-      "Трансформаторные подстанции",
-      "Автотрансформаторы и трансформаторные группы",
-      "Открытые распределительные устройства",
-      "ТЭЦ, ГРЭС, ТЭС и ГЭС",
-      "Открытые трансформаторные установки",
-      "Блочно-модульные подстанции",
-    ],
-  },
-  {
-    title: "Объекты связи и обработки данных",
-    image: "/objects/communications.jpg",
-    imageAlt: "Объект связи и обработки данных под защитной сетчатой конструкцией",
-    items: [
-      "Центры обработки данных",
-      "Узлы связи",
-      "Телекоммуникационное оборудование",
-      "Радиорелейные и радиолокационные станции",
-    ],
-  },
-  {
-    title: "Промышленные объекты",
-    image: "/objects/industrial.jpg",
-    imageAlt: "Промышленное оборудование под защитной сетчатой конструкцией",
-    items: [
-      "Химические и нефтехимические предприятия",
-      "Производства и склады взрывчатых веществ",
-      "Склады ГСМ, ЛВЖ и химической продукции",
-      "Металлургические предприятия",
-      "Машиностроительные производства",
-      "Критически важные объекты промышленной и пищевой инфраструктуры",
-    ],
-  },
-  {
-    title: "Атомная энергетика",
-    image: "/objects/nuclear.jpg",
-    imageAlt: "Объект атомной энергетики под защитной сетчатой конструкцией",
-    items: [
-      "Объекты Росатома (Росэнергоатом, ТВЭЛ, ЯОК, Атомэнергомаш)",
-      "АЭС и объекты ядерного цикла",
-    ],
-  },
-  {
-    title: "Транспортная инфраструктура",
-    image: "/objects/transport.jpg",
-    imageAlt: "Железнодорожная инфраструктура под защитной сетчатой конструкцией",
-    items: [
-      "Тяговые подстанции РЖД",
-      "Депо (ДЭПО, ПТОЛ)",
-      "Товарные станции с составами цистерн",
-      "Портовые сооружения",
-      "Топливозаправочные комплексы (ТЗК) аэропортов",
-    ],
-  },
-  {
-    title: "Госструктуры и безопасность",
-    image: "/objects/government.jpg",
-    imageAlt: "Объект государственной инфраструктуры под защитной сетчатой конструкцией",
-    items: [
-      "Объекты Минобороны и силовых структур (склады, арсеналы, казармы)",
-      "Административные здания органов власти",
-      "Исправительные учреждения (СИЗО, колонии)",
-    ],
-  },
-  {
-    title: "Инфраструктура жизнеобеспечения",
-    image: "/objects/lifesupport.jpg",
-    imageAlt: "Объект инфраструктуры жизнеобеспечения под защитной сетчатой конструкцией",
-    items: [
-      "Котельные и тепловые пункты",
-      "Водозаборные узлы и станции водоподготовки",
-      "Больницы и медицинские центры (стационары более 1000 коек)",
-      "Биологические, химические и медицинские лаборатории",
-      "Газораспределительные станции (ГРС)",
-    ],
-  },
-];
-
 export default function Home() {
   return (
     <main>
       <AnchorNavigation />
-      <header className="site-header">
-        <div className="shell nav">
-          <a className="brand" href="#top" aria-label="Авангард — на главную">
-            <Image
-              className="brand-logo"
-              src="/brand-logo.png"
-              alt="Авангард"
-              width={1774}
-              height={887}
-              priority
-              unoptimized
-            />
-          </a>
-          <nav className="nav-links" aria-label="Основная навигация">
-            <a href="#top">Главная</a>
-            <a href="/about">О компании</a>
-            <a href="#construction">Конструкция системы</a>
-            <a href="#documents">Документы</a>
-            <a href="#contacts">Контакты</a>
-          </nav>
-          <div className="header-contacts">
-            <span className="mail-pill">ваша почта@</span>
-            <a className="phone-pill" href="tel:+79954933770">
-              +7 (995) 493-37-70
-            </a>
-          </div>
-        </div>
-      </header>
+      <SiteHeader current="home" />
 
       <section className="hero shell" id="top">
         <div className="hero-copy">
@@ -295,7 +172,7 @@ export default function Home() {
               <div className="service-card-body">
                 <div className="service-card-meta">
                   <span className="card-code">{service.code}</span>
-                  <span className="card-mark" aria-hidden="true">↗</span>
+                  <span className="card-mark" aria-hidden="true"><ArrowUpRightIcon /></span>
                 </div>
                 <h3>{service.title}</h3>
                 <p>{service.text}</p>
@@ -410,58 +287,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="object-scope" id="objects">
-        <div className="shell">
-          <div className="object-scope-intro">
-            <div>
-              <span className="section-label light">Объекты защиты</span>
-              <h2>
-                Защитные ограждающие конструкции (ЗОК) для промышленных и
-                инфраструктурных объектов
-              </h2>
-            </div>
-            <div className="object-scope-copy">
-              <p>
-                Инженерная система защиты от БПЛА — комплексное решение для
-                физической защиты объектов с учётом их конфигурации,
-                технологических зон и особенностей эксплуатации.
-              </p>
-              <p>
-                Проектируем и устанавливаем защитные ограждающие конструкции
-                для предприятий ТЭК, энергетики, промышленности, связи и
-                транспортной инфраструктуры.
-              </p>
-            </div>
-          </div>
-          <div className="object-grid">
-            {protectedObjectGroups.map((group, index) => (
-              <article className="object-card" key={group.title}>
-                <div className="object-card-media">
-                  <Image
-                    src={group.image}
-                    alt={group.imageAlt}
-                    fill
-                    unoptimized
-                    sizes="(max-width: 620px) calc(100vw - 48px), (max-width: 980px) calc(100vw - 56px), 48vw"
-                  />
-                </div>
-                <div className="object-card-body">
-                  <div className="object-card-head">
-                    <span>{String(index + 1).padStart(2, "0")}</span>
-                    <h3>{group.title}</h3>
-                  </div>
-                  <ul>
-                    {group.items.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="project-band shell">
         <div>
           <span className="section-label">Комплексный подход</span>
@@ -472,7 +297,7 @@ export default function Home() {
           критические зоны, режим эксплуатации и требования заказчика.
         </p>
         <a className="round-link" href="#contacts" aria-label="Перейти к контактам">
-          ↗
+          <ArrowUpRightIcon />
         </a>
       </section>
 
@@ -510,7 +335,7 @@ export default function Home() {
                 target="_blank"
                 rel="noreferrer"
               >
-                Ханты-Мансийск ↗
+                <span>Ханты-Мансийск</span><ArrowUpRightIcon />
               </a>
             </div>
 

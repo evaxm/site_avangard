@@ -36,7 +36,7 @@ test("server-renders the home page with service and construction images", async 
   assert.doesNotMatch(html, /\/_vinext\/image/);
   assert.match(html, /<span class="contact-email">ваша почта@<\/span>/);
   assert.doesNotMatch(html, /evaa86@list\.ru|mailto:/);
-  assert.match(html, />Ханты-Мансийск ↗<\/a>/);
+  assert.match(html, />Ханты-Мансийск<\/span><svg[^>]*class="arrow-up-right/);
   assert.match(html, /<form[^>]*class="proposal-form"[^>]*action="\/api\/inquiry\.php"/);
   assert.match(html, /name="Имя"/);
   assert.match(html, /name="Телефон"/);
@@ -75,6 +75,21 @@ test("server-renders the home page with service and construction images", async 
   assert.match(html, /БПЛА → касание сетки → остановка/);
   assert.match(html, /Объект успешно защищён/);
   assert.doesNotMatch(html, /Открыть крупнее/);
+  assert.match(html, /href="\/solutions"[^>]*>Отраслевые решения/);
+  assert.doesNotMatch(html, /<nav[^>]*>[\s\S]*?>Документы<\/a>[\s\S]*?<\/nav>/);
+  assert.doesNotMatch(html, /<section class="object-scope"/);
+  assert.doesNotMatch(html, /Компетенции на стыке инженерных дисциплин/);
+  assert.doesNotMatch(html, /codex-preview|Your site is taking shape|Building your site/i);
+});
+
+test("serves industry solutions as a separate page", async () => {
+  const response = await render("/solutions");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /<title>Отраслевые решения \| Защита объектов от БПЛА<\/title>/i);
+  assert.match(html, /href="\/solutions" aria-current="page">Отраслевые решения/);
+  assert.doesNotMatch(html, /<nav[^>]*>[\s\S]*?>Документы<\/a>[\s\S]*?<\/nav>/);
   assert.match(html, /Защитные ограждающие конструкции \(ЗОК\) для промышленных и/);
   assert.match(html, /Объекты ТЭК/);
   assert.match(html, /Атомная энергетика/);
@@ -89,8 +104,16 @@ test("server-renders the home page with service and construction images", async 
   assert.match(html, /alt="Железнодорожная инфраструктура под защитной сетчатой конструкцией"/);
   assert.match(html, /alt="Объект государственной инфраструктуры под защитной сетчатой конструкцией"/);
   assert.match(html, /alt="Объект инфраструктуры жизнеобеспечения под защитной сетчатой конструкцией"/);
-  assert.doesNotMatch(html, /Компетенции на стыке инженерных дисциплин/);
-  assert.doesNotMatch(html, /codex-preview|Your site is taking shape|Building your site/i);
+});
+
+test("uses vector arrows instead of platform emoji glyphs", async () => {
+  const home = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const about = await readFile(new URL("../app/about/page.tsx", import.meta.url), "utf8");
+
+  assert.match(home, /<ArrowUpRightIcon\s*\/>/);
+  assert.match(about, /<ArrowUpRightIcon\s*\/>/);
+  assert.doesNotMatch(home, /↗/);
+  assert.doesNotMatch(about, /↗/);
 });
 
 test("serves an empty policy page on this site", async () => {
