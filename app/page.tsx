@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
-import PhoneInput from "./PhoneInput";
+import ProposalForm from "./ProposalForm";
 
 const services = [
   {
@@ -176,6 +176,15 @@ export default function Home() {
 
       <section className="hero shell" id="top">
         <div className="hero-copy">
+          <Image
+            className="hero-copy-image"
+            src="/hero-protected-facility.png"
+            alt="Промышленный объект под защитной сетчатой конструкцией"
+            fill
+            priority
+            unoptimized
+            sizes="(max-width: 980px) calc(100vw - 36px), 1420px"
+          />
           <div className="eyebrow">
             <span className="live-dot" aria-hidden="true" />
             Ханты-Мансийск · Инженерные решения
@@ -508,40 +517,7 @@ export default function Home() {
                 <span>Коммерческое предложение</span>
                 <h3>Получить расчёт для вашего объекта</h3>
               </div>
-              <form
-                className="proposal-form"
-                action="mailto:evaa86@list.ru"
-                method="post"
-                encType="text/plain"
-              >
-                <label className="form-field">
-                  <span>Имя</span>
-                  <input type="text" name="Имя" autoComplete="name" placeholder="Как к вам обращаться" required />
-                </label>
-                <label className="form-field">
-                  <span>Телефон</span>
-                  <PhoneInput />
-                </label>
-                <label className="form-field">
-                  <span>Почта</span>
-                  <input type="email" name="Почта" autoComplete="email" placeholder="name@company.ru" required />
-                </label>
-                <label className="form-field">
-                  <span>Город</span>
-                  <input type="text" name="Город" autoComplete="address-level2" placeholder="Город размещения объекта" required />
-                </label>
-                <label className="privacy-consent">
-                  <input type="checkbox" name="Согласие на обработку персональных данных" required />
-                  <span>
-                    Я ознакомлен(а) с{" "}
-                    <a href="/policy">
-                      Политикой обработки персональных данных
-                    </a>{" "}
-                    и даю согласие на обработку моих персональных данных в целях обработки обращения и предоставления ответа на запрос.
-                  </span>
-                </label>
-                <button type="submit">Получить КП <span aria-hidden="true">→</span></button>
-              </form>
+              <ProposalForm />
             </div>
           </div>
           <span className="contact-watermark" aria-hidden="true">86</span>

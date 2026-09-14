@@ -36,7 +36,7 @@ test("server-renders the home page with service and construction images", async 
   assert.doesNotMatch(html, /\/_vinext\/image/);
   assert.match(html, /class="contact-email" href="mailto:evaa86@list\.ru">evaa86@list\.ru<\/a>/);
   assert.match(html, />Ханты-Мансийск ↗<\/a>/);
-  assert.match(html, /<form[^>]*class="proposal-form"[^>]*action="mailto:evaa86@list\.ru"/);
+  assert.match(html, /<form[^>]*class="proposal-form"[^>]*action="\/api\/inquiry\.php"/);
   assert.match(html, /name="Имя"/);
   assert.match(html, /name="Телефон"/);
   assert.match(html, /name="Почта"/);
@@ -45,6 +45,7 @@ test("server-renders the home page with service and construction images", async 
   assert.match(html, /href="\/policy"/);
   assert.match(html, /Я ознакомлен\(а\) с/);
   assert.match(html, /Получить КП/);
+  assert.match(html, /name="website"/);
   assert.match(html, /class="phone-input"[^>]*pattern=/);
   assert.match(html, /placeholder="\+7 \(___\) ___-__-__"/);
   assert.doesNotMatch(html, /Формат: \+7 900 000-00-00/);
