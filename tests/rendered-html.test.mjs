@@ -151,6 +151,9 @@ test("keeps native anchor navigation immediately scrollable", async () => {
   );
 
   assert.match(css, /html\s*\{[^}]*scroll-behavior:\s*auto;/);
+  assert.match(css, /html\s*\{[^}]*overflow-y:\s*scroll;/);
+  assert.match(css, /html\s*\{[^}]*min-height:\s*100%;/);
+  assert.match(css, /body\s*\{[^}]*min-height:\s*100%;/);
   assert.doesNotMatch(css, /html\s*\{[^}]*scroll-behavior:\s*smooth;/);
   assert.doesNotMatch(css, /body\s*\{[^}]*overflow-x:/);
   assert.doesNotMatch(css, /main\s*\{[^}]*overflow-x:/);

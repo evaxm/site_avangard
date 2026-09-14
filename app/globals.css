@@ -12,10 +12,15 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: auto; }
+html {
+  min-height: 100%;
+  overflow-y: scroll;
+  scroll-behavior: auto;
+}
 section[id] { scroll-margin-top: 112px; }
 section[id]:focus { outline: none; }
 body {
+  min-height: 100%;
   margin: 0;
   background: var(--milk);
   color: var(--ink);
