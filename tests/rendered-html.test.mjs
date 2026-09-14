@@ -153,7 +153,7 @@ test("keeps long-distance anchor navigation immediately scrollable", async () =>
   assert.match(css, /html\s*\{[^}]*scroll-behavior:\s*auto;/);
   assert.doesNotMatch(css, /html\s*\{[^}]*scroll-behavior:\s*smooth;/);
   assert.doesNotMatch(css, /body\s*\{[^}]*overflow-x:/);
-  assert.match(css, /main\s*\{[^}]*overflow-x:\s*clip;/);
+  assert.doesNotMatch(css, /main\s*\{[^}]*overflow-x:/);
 
   const navigation = await readFile(
     new URL("../app/AnchorNavigation.tsx", import.meta.url),
