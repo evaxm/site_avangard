@@ -29,11 +29,15 @@ test("server-renders the home page with service and construction images", async 
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Защита промышленных объектов от БПЛА \| Авангард<\/title>/i);
+  assert.match(html, /<title>Защита объектов от БПЛА и защитные сетки \| Авангард<\/title>/i);
   assert.match(html, /rel="canonical" href="https:\/\/bpla-zok\.ru\/"/i);
   assert.match(html, /property="og:image" content="https:\/\/bpla-zok\.ru\/og\.png"/i);
   assert.match(html, /type="application\/ld\+json"/i);
   assert.match(html, /https:\/\/bpla-zok\.ru\/#organization/i);
+  assert.match(html, /https:\/\/bpla-zok\.ru\/#anti-uav-protection-service/i);
+  assert.match(html, /"@type":"FAQPage"/i);
+  assert.match(html, /Вопросы о защитных сетках и ЗОК/);
+  assert.match(html, /Что входит в систему защиты объекта от БПЛА/);
   assert.match(html, /Инженерная система <span>защиты объектов от БПЛА<\/span>/);
   assert.match(html, /src="\/brand-logo\.png"/);
   assert.match(html, /<span class="mail-pill">ваша почта@<\/span>/);

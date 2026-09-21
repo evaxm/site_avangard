@@ -7,9 +7,9 @@ import ProposalForm from "./ProposalForm";
 import SiteHeader from "./SiteHeader";
 
 export const metadata: Metadata = {
-  title: "Защита промышленных объектов от БПЛА",
+  title: "Защита объектов от БПЛА и защитные сетки",
   description:
-    "Проектирование и реализация защитных ограждающих конструкций для промышленных и инфраструктурных объектов.",
+    "Проектирование, изготовление и монтаж защитных сеток и защитных ограждающих конструкций (ЗОК) для промышленных и инфраструктурных объектов.",
   alternates: { canonical: "/" },
 };
 
@@ -54,6 +54,34 @@ const steps = [
   ["03", "Рабочая документация", "Чертежи и узлы"],
   ["04", "Исполнительный комплект", "Акты и регламенты"],
 ];
+
+const faqItems = [
+  {
+    question: "Что входит в систему защиты объекта от БПЛА?",
+    answer:
+      "В состав защитной ограждающей конструкции входят фундаментные блоки, решётчатые опоры, силовые тросы и защитная сетка. Конфигурация определяется для конкретного объекта.",
+  },
+  {
+    question: "С чего начинается проектирование защитной сетки?",
+    answer:
+      "Работа начинается с обследования территории, анализа критических зон, действующей инфраструктуры и исходных требований. Затем разрабатываются концепция, расчёты, спецификации и рабочая документация.",
+  },
+  {
+    question: "Для каких объектов проектируются защитные сетки и ЗОК?",
+    answer:
+      "Решения разрабатываются для промышленных и инфраструктурных объектов с учётом конфигурации площадки, технологических зон и режима эксплуатации.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: { "@type": "Answer", text: item.answer },
+  })),
+};
 
 export default function Home() {
   return (
@@ -309,6 +337,25 @@ export default function Home() {
         </a>
       </section>
 
+      <section className="faq shell" aria-labelledby="faq-title">
+        <div className="faq-heading">
+          <span className="section-label">Защита объектов от БПЛА</span>
+          <h2 id="faq-title">Вопросы о защитных сетках и ЗОК</h2>
+          <p>
+            Кратко о составе, проектировании и применении защитных
+            ограждающих конструкций.
+          </p>
+        </div>
+        <div className="faq-list">
+          {faqItems.map((item, index) => (
+            <details key={item.question} open={index === 0}>
+              <summary>{item.question}</summary>
+              <p>{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
       <div className="shell bottom-grid">
         <section className="steps" id="documents">
           <span className="section-label light">Документы</span>
@@ -366,6 +413,10 @@ export default function Home() {
           <span>Ханты-Мансийск</span>
         </div>
       </footer>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
     </main>
   );
 }
