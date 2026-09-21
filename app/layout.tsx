@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
-import { headers } from "next/headers";
+import type { Metadata, Viewport } from "next";
 import { Manrope, Space_Mono } from "next/font/google";
 import "./globals.css";
+
+const siteUrl = new URL("https://bpla-zok.ru");
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -14,47 +15,102 @@ const spaceMono = Space_Mono({
   weight: ["400", "700"],
 });
 
-export async function generateMetadata(): Promise<Metadata> {
-  const requestHeaders = await headers();
-  const host =
-    requestHeaders.get("x-forwarded-host") ??
-    requestHeaders.get("host") ??
-    "pechat3d-khm-9954933770.evaa86.chatgpt.site";
-  const protocol = requestHeaders.get("x-forwarded-proto") ?? "https";
-  const siteUrl = new URL(`${protocol}://${host}`);
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#f7f3eb",
+};
 
-  return {
-    metadataBase: siteUrl,
-    title: "Инженерная система защиты от БПЛА",
+export const metadata: Metadata = {
+  metadataBase: siteUrl,
+  title: {
+    default: "Защита промышленных объектов от БПЛА | Авангард",
+    template: "%s | Авангард",
+  },
+  description:
+    "Проектирование и реализация защитных ограждающих конструкций для промышленных и инфраструктурных объектов.",
+  keywords: [
+    "защита от БПЛА",
+    "защитные ограждающие конструкции",
+    "защита промышленных объектов",
+    "инженерная защита",
+    "Ханты-Мансийск",
+  ],
+  alternates: { canonical: "/" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
+  openGraph: {
+    type: "website",
+    locale: "ru_RU",
+    url: siteUrl,
+    siteName: "Авангард",
+    title: "Защита промышленных объектов от БПЛА | Авангард",
     description:
-      "Проектирование и реализация комплексных решений для физической защиты промышленных объектов.",
-    keywords: [
-      "защита от БПЛА",
-      "физическая защита промышленных объектов",
-      "инженерная защита",
-      "проектирование защитных систем",
-      "Ханты-Мансийск",
+      "Проектирование и реализация защитных ограждающих конструкций для промышленных и инфраструктурных объектов.",
+    images: [
+      {
+        url: "/og.png",
+        width: 1536,
+        height: 1024,
+        alt: "Промышленный объект под защитной сетчатой конструкцией",
+      },
     ],
-    openGraph: {
-      type: "website",
-      locale: "ru_RU",
-      url: siteUrl,
-      siteName: "Инженерная защита 86",
-      title: "Инженерная система защиты от БПЛА",
-      description: "Комплексные решения для физической защиты промышленных объектов.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Защита промышленных объектов от БПЛА | Авангард",
+    description:
+      "Проектирование и реализация защитных ограждающих конструкций для промышленных и инфраструктурных объектов.",
+    images: ["/og.png"],
+  },
+  icons: { icon: "/favicon.svg" },
+  other: {
+    "geo.region": "RU-KHM",
+    "geo.placename": "Ханты-Мансийск",
+  },
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://bpla-zok.ru/#organization",
+      name: "Авангард",
+      url: "https://bpla-zok.ru/",
+      logo: "https://bpla-zok.ru/brand-logo.png",
+      telephone: "+7-995-493-37-70",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Ханты-Мансийск",
+        addressRegion: "Ханты-Мансийский автономный округ — Югра",
+        addressCountry: "RU",
+      },
     },
-    twitter: {
-      card: "summary",
-      title: "Инженерная система защиты от БПЛА",
-      description: "Комплексные решения для физической защиты промышленных объектов.",
+    {
+      "@type": "WebSite",
+      "@id": "https://bpla-zok.ru/#website",
+      url: "https://bpla-zok.ru/",
+      name: "Авангард — защита объектов от БПЛА",
+      inLanguage: "ru-RU",
+      publisher: { "@id": "https://bpla-zok.ru/#organization" },
     },
-  };
-}
+  ],
+};
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ru">
-      <body className={`${manrope.variable} ${spaceMono.variable}`}>{children}</body>
+      <body className={`${manrope.variable} ${spaceMono.variable}`}>
+        {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+      </body>
     </html>
   );
 }

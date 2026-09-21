@@ -5,8 +5,11 @@ import PhoneInput from "./PhoneInput";
 
 type SubmitState = "idle" | "sending" | "success" | "error";
 
+const fallbackError = "Не удалось отправить заявку. Позвоните нам или попробуйте ещё раз.";
+
 export default function ProposalForm() {
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
+  const [submitMessage, setSubmitMessage] = useState("");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -16,6 +19,10 @@ export default function ProposalForm() {
 
     const formData = new FormData(form);
     setSubmitState("sending");
+    setSubmitMessage("");
+
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 20_000);
 
     try {
       const response = await fetch("/api/inquiry.php", {
@@ -29,17 +36,34 @@ export default function ProposalForm() {
           consent: formData.has("Согласие на обработку персональных данных"),
           website: formData.get("website"),
         }),
+        signal: controller.signal,
       });
 
       const result = await response.json().catch(() => null);
       if (!response.ok || !result?.ok) {
-        throw new Error("Telegram delivery failed");
+        const message =
+          response.status === 422
+            ? "Проверьте заполнение формы."
+            : typeof result?.message === "string" && result.message.length <= 160
+              ? result.message
+              : fallbackError;
+        throw new Error(message);
       }
 
       form.reset();
+      setSubmitMessage("Заявка отправлена. Мы свяжемся с вами.");
       setSubmitState("success");
-    } catch {
+    } catch (error) {
+      const message =
+        error instanceof DOMException && error.name === "AbortError"
+          ? "Сервер отвечает слишком долго. Попробуйте отправить заявку ещё раз."
+          : error instanceof Error && error.message
+            ? error.message
+            : fallbackError;
+      setSubmitMessage(message);
       setSubmitState("error");
+    } finally {
+      window.clearTimeout(timeout);
     }
   }
 
@@ -83,13 +107,13 @@ export default function ProposalForm() {
         <span aria-hidden="true">→</span>
       </button>
       {submitState === "success" && (
-        <p className="form-message success" role="status">
-          Заявка отправлена. Мы свяжемся с вами.
+        <p className="form-message success" role="status" aria-live="polite">
+          {submitMessage}
         </p>
       )}
       {submitState === "error" && (
-        <p className="form-message error" role="alert">
-          Не удалось отправить заявку. Позвоните нам или попробуйте ещё раз.
+        <p className="form-message error" role="alert" aria-live="assertive">
+          {submitMessage}
         </p>
       )}
     </form>

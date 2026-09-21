@@ -29,7 +29,11 @@ test("server-renders the home page with service and construction images", async 
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Инженерная система защиты от БПЛА<\/title>/i);
+  assert.match(html, /<title>Защита промышленных объектов от БПЛА \| Авангард<\/title>/i);
+  assert.match(html, /rel="canonical" href="https:\/\/bpla-zok\.ru\/"/i);
+  assert.match(html, /property="og:image" content="https:\/\/bpla-zok\.ru\/og\.png"/i);
+  assert.match(html, /type="application\/ld\+json"/i);
+  assert.match(html, /https:\/\/bpla-zok\.ru\/#organization/i);
   assert.match(html, /Инженерная система <span>защиты объектов от БПЛА<\/span>/);
   assert.match(html, /src="\/brand-logo\.png"/);
   assert.match(html, /<span class="mail-pill">ваша почта@<\/span>/);
@@ -87,7 +91,8 @@ test("serves industry solutions as a separate page", async () => {
   assert.equal(response.status, 200);
 
   const html = await response.text();
-  assert.match(html, /<title>Отраслевые решения \| Защита объектов от БПЛА<\/title>/i);
+  assert.match(html, /<title>Отраслевые решения \| Авангард<\/title>/i);
+  assert.match(html, /rel="canonical" href="https:\/\/bpla-zok\.ru\/solutions"/i);
   assert.match(html, /href="\/solutions" aria-current="page">Отраслевые решения/);
   assert.doesNotMatch(html, /<nav[^>]*>[\s\S]*?>Документы<\/a>[\s\S]*?<\/nav>/);
   assert.match(html, /Защитные ограждающие конструкции \(ЗОК\) для промышленных и/);
@@ -123,29 +128,69 @@ test("serves an empty policy page on this site", async () => {
   const html = await response.text();
   assert.match(html, /Политика обработки персональных данных/);
   assert.match(html, /class="policy-content"/);
+  assert.match(html, /name="robots" content="noindex, follow"/i);
   assert.doesNotMatch(html, /ab-guard\.ru/);
+});
+
+test("uses unique canonical metadata for the company page", async () => {
+  const response = await render("/about");
+  assert.equal(response.status, 200);
+
+  const html = await response.text();
+  assert.match(html, /<title>О компании \| Авангард<\/title>/i);
+  assert.match(html, /rel="canonical" href="https:\/\/bpla-zok\.ru\/about"/i);
+  assert.match(html, /Жилой комплекс из 5 домов — 54 тыс\. м² жилого фонда со встроенным детским садом в рамках КРТ/);
+  assert.match(html, /Жилой дом с офисными помещениями на 8700 м²/);
+  assert.match(html, /Благоустройство микрорайона в рамках КРТ/);
+  assert.match(html, /Отделка мест общего пользования/);
+  assert.match(html, />Промышленный парк</);
+  assert.doesNotMatch(html, /Северин|Долина ручьёв|Импульс/);
+});
+
+test("ships search-engine and server support files", async () => {
+  const [robots, sitemap, htaccess, missingPage] = await Promise.all([
+    readFile(new URL("../public/robots.txt", import.meta.url), "utf8"),
+    readFile(new URL("../public/sitemap.xml", import.meta.url), "utf8"),
+    readFile(new URL("../public/.htaccess", import.meta.url), "utf8"),
+    readFile(new URL("../public/404.html", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(robots, /Sitemap: https:\/\/bpla-zok\.ru\/sitemap\.xml/);
+  assert.match(sitemap, /<loc>https:\/\/bpla-zok\.ru\/solutions<\/loc>/);
+  assert.doesNotMatch(sitemap, /\/policy/);
+  assert.match(htaccess, /ErrorDocument 404 \/404\.html/);
+  assert.match(missingPage, /<meta name="robots" content="noindex, follow">/);
+});
+
+test("handles Telegram group migrations without exposing credentials", async () => {
+  const handler = await readFile(new URL("../server/inquiry.php", import.meta.url), "utf8");
+
+  assert.match(handler, /migrate_to_chat_id/);
+  assert.match(handler, /persist_migrated_chat_id/);
+  assert.doesNotMatch(handler, /8675090069:AA/);
 });
 
 test("includes the supplied image assets", async () => {
   const assets = [
-    "public/services/audit.jpg",
-    "public/services/project.jpg",
-    "public/services/build.jpg",
-    "public/services/service.jpg",
+    "public/services/audit-optimized.jpg",
+    "public/services/project-optimized.jpg",
+    "public/services/build-optimized.jpg",
+    "public/services/service-optimized.jpg",
     "public/brand-logo.png",
-    "public/about-hero.png",
-    "public/construction/system-overview.png",
-    "public/construction/system-layout.png",
-    "public/construction/net-view-01.png",
-    "public/construction/net-view-02.jpg",
-    "public/objects/tek.jpg",
-    "public/objects/energy.jpg",
-    "public/objects/communications.jpg",
-    "public/objects/industrial.jpg",
-    "public/objects/nuclear.jpg",
-    "public/objects/transport.jpg",
-    "public/objects/government.jpg",
-    "public/objects/lifesupport.jpg",
+    "public/hero-protected-facility-optimized.jpg",
+    "public/about-hero-optimized.jpg",
+    "public/construction/system-overview-optimized.jpg",
+    "public/construction/system-layout-optimized.jpg",
+    "public/construction/net-view-01-optimized.jpg",
+    "public/construction/net-view-02-optimized.jpg",
+    "public/objects/tek-optimized.jpg",
+    "public/objects/energy-optimized.jpg",
+    "public/objects/communications-optimized.jpg",
+    "public/objects/industrial-optimized.jpg",
+    "public/objects/nuclear-optimized.jpg",
+    "public/objects/transport-optimized.jpg",
+    "public/objects/government-optimized.jpg",
+    "public/objects/lifesupport-optimized.jpg",
   ];
 
   await Promise.all(

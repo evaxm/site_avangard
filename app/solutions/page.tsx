@@ -5,9 +5,10 @@ import SiteHeader from "../SiteHeader";
 import { protectedObjectGroups } from "./data";
 
 export const metadata: Metadata = {
-  title: "Отраслевые решения | Защита объектов от БПЛА",
+  title: "Отраслевые решения",
   description:
     "Защитные ограждающие конструкции для промышленных и инфраструктурных объектов.",
+  alternates: { canonical: "/solutions" },
 };
 
 export default function SolutionsPage() {

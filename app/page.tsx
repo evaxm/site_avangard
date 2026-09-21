@@ -1,16 +1,24 @@
 import Image from "next/image";
+import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import AnchorNavigation from "./AnchorNavigation";
 import ArrowUpRightIcon from "./ArrowUpRightIcon";
 import ProposalForm from "./ProposalForm";
 import SiteHeader from "./SiteHeader";
 
+export const metadata: Metadata = {
+  title: "Защита промышленных объектов от БПЛА",
+  description:
+    "Проектирование и реализация защитных ограждающих конструкций для промышленных и инфраструктурных объектов.",
+  alternates: { canonical: "/" },
+};
+
 const services = [
   {
     code: "01 / AUDIT",
     title: "Обследование объекта",
     text: "Анализируем территорию, критические зоны, действующую инфраструктуру и исходные требования.",
-    image: "/services/audit.jpg",
+    image: "/services/audit-optimized.jpg",
     imageAlt: "Инженеры обследуют промышленный объект и изучают его документацию",
     imagePosition: "center center",
   },
@@ -18,7 +26,7 @@ const services = [
     code: "02 / PROJECT",
     title: "Проектирование",
     text: "Разрабатываем комплексное решение, узлы, спецификации и рабочую документацию.",
-    image: "/services/project.jpg",
+    image: "/services/project-optimized.jpg",
     imageAlt: "Проект защитной сетчатой конструкции для промышленного оборудования",
     imagePosition: "center center",
   },
@@ -26,7 +34,7 @@ const services = [
     code: "03 / BUILD",
     title: "Изготовление и монтаж",
     text: "Организуем производство конструкций, поставку и выполнение монтажных работ на объекте.",
-    image: "/services/build.jpg",
+    image: "/services/build-optimized.jpg",
     imageAlt: "Монтаж защитной сетчатой конструкции на промышленном объекте",
     imagePosition: "center 34%",
   },
@@ -34,7 +42,7 @@ const services = [
     code: "04 / SERVICE",
     title: "Сопровождение",
     text: "Проводим приёмку, передаём документацию и рекомендации по эксплуатации системы.",
-    image: "/services/service.jpg",
+    image: "/services/service-optimized.jpg",
     imageAlt: "Инженеры проверяют установленную защитную конструкцию на объекте",
     imagePosition: "center center",
   },
@@ -57,7 +65,7 @@ export default function Home() {
         <div className="hero-copy">
           <Image
             className="hero-copy-image"
-            src="/hero-protected-facility.png"
+            src="/hero-protected-facility-optimized.jpg"
             alt="Промышленный объект под защитной сетчатой конструкцией"
             fill
             priority
@@ -229,9 +237,9 @@ export default function Home() {
             </ol>
           </div>
           <figure className="construction-overview">
-            <a className="construction-image-link" href="/construction/system-overview.png" target="_blank" rel="noreferrer" aria-label="Открыть схему основных элементов в полном размере">
+            <a className="construction-image-link" href="/construction/system-overview-optimized.jpg" target="_blank" rel="noreferrer" aria-label="Открыть схему основных элементов в полном размере">
               <Image
-                src="/construction/system-overview.png"
+                src="/construction/system-overview-optimized.jpg"
                 alt="Схема основных элементов системы защитной сетки"
                 width={1672}
                 height={941}
@@ -244,9 +252,9 @@ export default function Home() {
           </figure>
           <div className="construction-gallery">
             <figure className="construction-card diagram">
-              <a className="construction-image-link" href="/construction/system-layout.png" target="_blank" rel="noreferrer" aria-label="Открыть схему размещения в полном размере">
+              <a className="construction-image-link" href="/construction/system-layout-optimized.jpg" target="_blank" rel="noreferrer" aria-label="Открыть схему размещения в полном размере">
                 <Image
-                  src="/construction/system-layout.png"
+                  src="/construction/system-layout-optimized.jpg"
                   alt="Схема размещения защитной сетки вокруг группы промышленных ёмкостей"
                   width={1448}
                   height={1086}
@@ -258,9 +266,9 @@ export default function Home() {
               <figcaption>Пример схемы размещения</figcaption>
             </figure>
             <figure className="construction-card photo">
-              <a className="construction-image-link" href="/construction/net-view-01.png" target="_blank" rel="noreferrer" aria-label="Открыть фотографию конструкции, первый ракурс">
+              <a className="construction-image-link" href="/construction/net-view-01-optimized.jpg" target="_blank" rel="noreferrer" aria-label="Открыть фотографию конструкции, первый ракурс">
                 <Image
-                  src="/construction/net-view-01.png"
+                  src="/construction/net-view-01-optimized.jpg"
                   alt="Промышленная площадка с резервуарами под защитной сетчатой конструкцией"
                   width={1254}
                   height={1254}
@@ -271,9 +279,9 @@ export default function Home() {
               <figcaption>Общий вид конструкции · ракурс 01</figcaption>
             </figure>
             <figure className="construction-card photo">
-              <a className="construction-image-link" href="/construction/net-view-02.jpg" target="_blank" rel="noreferrer" aria-label="Открыть фотографию конструкции, второй ракурс">
+              <a className="construction-image-link" href="/construction/net-view-02-optimized.jpg" target="_blank" rel="noreferrer" aria-label="Открыть фотографию конструкции, второй ракурс">
                 <Image
-                  src="/construction/net-view-02.jpg"
+                  src="/construction/net-view-02-optimized.jpg"
                   alt="Установленная защитная сетчатая конструкция, второй ракурс"
                   width={1448}
                   height={1086}

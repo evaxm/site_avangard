@@ -1,7 +1,7 @@
 export const protectedObjectGroups = [
   {
     title: "Объекты ТЭК",
-    image: "/objects/tek.jpg",
+    image: "/objects/tek-optimized.jpg",
     imageAlt: "Резервуарный парк под защитной сетчатой конструкцией",
     items: [
       "Нефтеперерабатывающие и газоперерабатывающие предприятия",
@@ -16,7 +16,7 @@ export const protectedObjectGroups = [
   },
   {
     title: "Энергетические объекты",
-    image: "/objects/energy.jpg",
+    image: "/objects/energy-optimized.jpg",
     imageAlt: "Электрическая подстанция под защитной сетчатой конструкцией",
     items: [
       "Трансформаторные подстанции",
@@ -29,7 +29,7 @@ export const protectedObjectGroups = [
   },
   {
     title: "Объекты связи и обработки данных",
-    image: "/objects/communications.jpg",
+    image: "/objects/communications-optimized.jpg",
     imageAlt: "Объект связи и обработки данных под защитной сетчатой конструкцией",
     items: [
       "Центры обработки данных",
@@ -40,7 +40,7 @@ export const protectedObjectGroups = [
   },
   {
     title: "Промышленные объекты",
-    image: "/objects/industrial.jpg",
+    image: "/objects/industrial-optimized.jpg",
     imageAlt: "Промышленное оборудование под защитной сетчатой конструкцией",
     items: [
       "Химические и нефтехимические предприятия",
@@ -53,7 +53,7 @@ export const protectedObjectGroups = [
   },
   {
     title: "Атомная энергетика",
-    image: "/objects/nuclear.jpg",
+    image: "/objects/nuclear-optimized.jpg",
     imageAlt: "Объект атомной энергетики под защитной сетчатой конструкцией",
     items: [
       "Объекты Росатома (Росэнергоатом, ТВЭЛ, ЯОК, Атомэнергомаш)",
@@ -62,7 +62,7 @@ export const protectedObjectGroups = [
   },
   {
     title: "Транспортная инфраструктура",
-    image: "/objects/transport.jpg",
+    image: "/objects/transport-optimized.jpg",
     imageAlt: "Железнодорожная инфраструктура под защитной сетчатой конструкцией",
     items: [
       "Тяговые подстанции РЖД",
@@ -74,7 +74,7 @@ export const protectedObjectGroups = [
   },
   {
     title: "Госструктуры и безопасность",
-    image: "/objects/government.jpg",
+    image: "/objects/government-optimized.jpg",
     imageAlt: "Объект государственной инфраструктуры под защитной сетчатой конструкцией",
     items: [
       "Объекты Минобороны и силовых структур (склады, арсеналы, казармы)",
@@ -84,7 +84,7 @@ export const protectedObjectGroups = [
   },
   {
     title: "Инфраструктура жизнеобеспечения",
-    image: "/objects/lifesupport.jpg",
+    image: "/objects/lifesupport-optimized.jpg",
     imageAlt: "Объект инфраструктуры жизнеобеспечения под защитной сетчатой конструкцией",
     items: [
       "Котельные и тепловые пункты",

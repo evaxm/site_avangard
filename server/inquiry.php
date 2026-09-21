@@ -18,6 +18,65 @@ function text_length(string $value): int
     return function_exists('mb_strlen') ? mb_strlen($value) : strlen($value);
 }
 
+function telegram_send(string $url, string $chatId, string $message): array
+{
+    $payload = json_encode([
+        'chat_id' => $chatId,
+        'text' => $message,
+    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+    if ($payload === false || !function_exists('curl_init')) {
+        return ['ok' => false, 'status' => 0, 'error' => 'PHP cURL is unavailable', 'result' => null];
+    }
+
+    $curl = curl_init($url);
+    curl_setopt_array($curl, [
+        CURLOPT_POST => true,
+        CURLOPT_POSTFIELDS => $payload,
+        CURLOPT_HTTPHEADER => ['Content-Type: application/json'],
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_CONNECTTIMEOUT => 5,
+        CURLOPT_TIMEOUT => 20,
+    ]);
+
+    $response = curl_exec($curl);
+    $status = (int) curl_getinfo($curl, CURLINFO_RESPONSE_CODE);
+    $error = curl_error($curl);
+    curl_close($curl);
+
+    $result = is_string($response) ? json_decode($response, true) : null;
+
+    return [
+        'ok' => $error === '' && $status === 200 && is_array($result) && ($result['ok'] ?? false),
+        'status' => $status,
+        'error' => $error,
+        'result' => is_array($result) ? $result : null,
+    ];
+}
+
+function persist_migrated_chat_id(string $configPath, array $config, string $chatId): bool
+{
+    if (!is_file($configPath) || !is_writable($configPath)) {
+        return false;
+    }
+
+    $config['chat_id'] = $chatId;
+    $contents = "<?php\n\nreturn " . var_export($config, true) . ";\n";
+    $temporary = $configPath . '.tmp-' . bin2hex(random_bytes(6));
+
+    if (file_put_contents($temporary, $contents, LOCK_EX) === false) {
+        return false;
+    }
+
+    @chmod($temporary, fileperms($configPath) & 0777);
+    if (!rename($temporary, $configPath)) {
+        @unlink($temporary);
+        return false;
+    }
+
+    return true;
+}
+
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     header('Allow: POST');
     respond(405, ['ok' => false]);
@@ -77,6 +136,9 @@ if (!$configPath) {
 }
 
 $config = is_file($configPath) ? require $configPath : [];
+if (!is_array($config)) {
+    $config = [];
+}
 $botToken = (string) (getenv('TELEGRAM_BOT_TOKEN') ?: ($config['bot_token'] ?? ''));
 $chatId = (string) (getenv('TELEGRAM_CHAT_ID') ?: ($config['chat_id'] ?? ''));
 
@@ -102,34 +164,30 @@ $message = implode("\n", [
 ]);
 
 $telegramUrl = 'https://api.telegram.org/bot' . $botToken . '/sendMessage';
-$payload = json_encode([
-    'chat_id' => $chatId,
-    'text' => $message,
-], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-
-if ($payload === false || !function_exists('curl_init')) {
+if (!function_exists('curl_init')) {
     error_log('Telegram inquiry handler requires PHP cURL');
     respond(503, ['ok' => false, 'message' => 'Сервис временно недоступен']);
 }
 
-$curl = curl_init($telegramUrl);
-curl_setopt_array($curl, [
-    CURLOPT_POST => true,
-    CURLOPT_POSTFIELDS => $payload,
-    CURLOPT_HTTPHEADER => ['Content-Type: application/json'],
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_CONNECTTIMEOUT => 5,
-    CURLOPT_TIMEOUT => 10,
-]);
+$delivery = telegram_send($telegramUrl, $chatId, $message);
 
-$telegramResponse = curl_exec($curl);
-$telegramStatus = (int) curl_getinfo($curl, CURLINFO_RESPONSE_CODE);
-$curlError = curl_error($curl);
-curl_close($curl);
+if (!$delivery['ok']) {
+    $migratedChatId = (string) ($delivery['result']['parameters']['migrate_to_chat_id'] ?? '');
 
-$telegramResult = is_string($telegramResponse) ? json_decode($telegramResponse, true) : null;
-if ($curlError !== '' || $telegramStatus !== 200 || !is_array($telegramResult) || !($telegramResult['ok'] ?? false)) {
-    error_log('Telegram inquiry delivery failed: HTTP ' . $telegramStatus . ' ' . $curlError);
+    if ($migratedChatId !== '' && preg_match('/^-?\d+$/', $migratedChatId)) {
+        $retry = telegram_send($telegramUrl, $migratedChatId, $message);
+        if ($retry['ok']) {
+            if (!persist_migrated_chat_id($configPath, is_array($config) ? $config : [], $migratedChatId)) {
+                error_log('Telegram chat migration succeeded but the configuration could not be updated');
+            }
+            respond(200, ['ok' => true]);
+        }
+        $delivery = $retry;
+    }
+
+    $description = (string) ($delivery['result']['description'] ?? $delivery['error'] ?? 'unknown error');
+    $description = preg_replace('/[\r\n]+/', ' ', $description) ?? 'unknown error';
+    error_log('Telegram inquiry delivery failed: HTTP ' . $delivery['status'] . ' ' . substr($description, 0, 200));
     respond(502, ['ok' => false, 'message' => 'Не удалось отправить заявку']);
 }
 

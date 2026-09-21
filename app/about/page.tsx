@@ -1,7 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 import ArrowUpRightIcon from "../ArrowUpRightIcon";
 import SiteHeader from "../SiteHeader";
+
+export const metadata: Metadata = {
+  title: "О компании",
+  description:
+    "Строительная компания Авангард в Ханты-Мансийске: направления работ и опыт команды.",
+  alternates: { canonical: "/about" },
+};
 
 const workGroups = [
   {
@@ -65,13 +73,16 @@ const workGroups = [
 ];
 
 const projects = [
-  { title: "Жилой комплекс «Северин»", images: ["01"] },
-  { title: "Промышленный парк «Импульс»", images: ["02", "03", "04"] },
+  {
+    title: "Жилой комплекс из 5 домов — 54 тыс. м² жилого фонда со встроенным детским садом в рамках КРТ",
+    images: ["01"],
+  },
+  { title: "Промышленный парк", images: ["02", "03", "04"] },
   { title: "Технологический центр с офисными и жилыми помещениями", images: ["05"] },
   { title: "Жилой дом на 296 квартир", images: ["06"] },
-  { title: "Жилой дом «Долина ручьёв»", images: ["07"] },
-  { title: "Отделка мест общего пользования в ЖК «Северин»", images: ["08", "09"] },
-  { title: "Благоустройство ЖК «Северин»", images: ["10", "11"] },
+  { title: "Жилой дом с офисными помещениями на 8700 м²", images: ["07"] },
+  { title: "Отделка мест общего пользования", images: ["08", "09"] },
+  { title: "Благоустройство микрорайона в рамках КРТ", images: ["10", "11"] },
   { title: "Сети электроснабжения", images: ["12", "13"] },
   { title: "Инженерные сети", images: ["14"] },
   { title: "Монолитные и общестроительные работы", images: ["15", "16"] },
@@ -97,7 +108,7 @@ export default function AboutPage() {
         <aside className="about-summary">
           <Image
             className="about-summary-image"
-            src="/about-hero.png"
+            src="/about-hero-optimized.jpg"
             alt="Строительная площадка и проектная документация"
             width={1672}
             height={941}
@@ -151,7 +162,7 @@ export default function AboutPage() {
                   {project.images.map((image, imageIndex) => (
                     <Image
                       key={image}
-                      src={"/company/project-" + image + ".jpg"}
+                      src={"/company/project-" + image + "-optimized.jpg"}
                       alt={project.title + (project.images.length > 1 ? ", вид " + (imageIndex + 1) : "")}
                       width={1280}
                       height={853}
