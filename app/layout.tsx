@@ -82,7 +82,8 @@ const organizationSchema = {
       name: "Авангард",
       url: "https://bpla-zok.ru/",
       logo: "https://bpla-zok.ru/brand-logo.png",
-      telephone: "+7-995-493-37-70",
+      telephone: "+7-982-558-22-86",
+      email: "86.avangard@bk.ru",
       address: {
         "@type": "PostalAddress",
         addressLocality: "Ханты-Мансийск",

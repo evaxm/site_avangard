@@ -40,10 +40,11 @@ test("server-renders the home page with service and construction images", async 
   assert.match(html, /Что входит в систему защиты объекта от БПЛА/);
   assert.match(html, /Инженерная система <span>защиты объектов от БПЛА<\/span>/);
   assert.match(html, /src="\/brand-logo\.png"/);
-  assert.match(html, /<span class="mail-pill">ваша почта@<\/span>/);
+  assert.match(html, /<a class="mail-pill" href="mailto:86\.avangard@bk\.ru">86\.avangard@bk\.ru<\/a>/);
   assert.doesNotMatch(html, /\/_vinext\/image/);
-  assert.match(html, /<span class="contact-email">ваша почта@<\/span>/);
-  assert.doesNotMatch(html, /evaa86@list\.ru|mailto:/);
+  assert.match(html, /<a class="contact-email" href="mailto:86\.avangard@bk\.ru">86\.avangard@bk\.ru<\/a>/);
+  assert.match(html, /href="tel:\+79825582286">8 982 558 22 86<\/a>/);
+  assert.doesNotMatch(html, /evaa86@list\.ru|\+7 \(995\) 493-37-70|79954933770/);
   assert.match(html, />Ханты-Мансийск<\/span><svg[^>]*class="arrow-up-right/);
   assert.match(html, /<form[^>]*class="proposal-form"[^>]*action="\/api\/inquiry\.php"/);
   assert.match(html, /name="Имя"/);

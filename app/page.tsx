@@ -381,8 +381,10 @@ export default function Home() {
                 и ожидаемый результат.
               </p>
               <div className="contact-links">
-                <a href="tel:+79954933770">+7 (995) 493-37-70</a>
-                <span className="contact-email">ваша почта@</span>
+                <a href="tel:+79825582286">8 982 558 22 86</a>
+                <a className="contact-email" href="mailto:86.avangard@bk.ru">
+                  86.avangard@bk.ru
+                </a>
               </div>
               <a
                 className="address"

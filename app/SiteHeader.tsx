@@ -28,9 +28,11 @@ export default function SiteHeader({ current }: SiteHeaderProps) {
           <Link href="/#contacts">Контакты</Link>
         </nav>
         <div className="header-contacts">
-          <span className="mail-pill">ваша почта@</span>
-          <a className="phone-pill" href="tel:+79954933770">
-            +7 (995) 493-37-70
+          <a className="mail-pill" href="mailto:86.avangard@bk.ru">
+            86.avangard@bk.ru
+          </a>
+          <a className="phone-pill" href="tel:+79825582286">
+            8 982 558 22 86
           </a>
         </div>
       </div>
