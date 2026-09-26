@@ -83,6 +83,8 @@ test("server-renders the home page with service and construction images", async 
   assert.match(html, /Защищаемый объект/);
   assert.match(html, /БПЛА → касание сетки → остановка/);
   assert.match(html, /Объект успешно защищён/);
+  assert.match(html, /class="machine" data-animate-on-view="true"/);
+  assert.match(html, /class="assembly-demo" data-animate-on-view="true"/);
   assert.doesNotMatch(html, /Открыть крупнее/);
   assert.match(html, /href="\/solutions"[^>]*>Отраслевые решения/);
   assert.doesNotMatch(html, /<nav[^>]*>[\s\S]*?>Документы<\/a>[\s\S]*?<\/nav>/);
@@ -146,6 +148,9 @@ test("uses unique canonical metadata for the company page", async () => {
   assert.match(html, /rel="canonical" href="https:\/\/bpla-zok\.ru\/about"/i);
   assert.match(html, /Жилой комплекс из 5 домов — 54 тыс\. м² жилого фонда со встроенным детским садом в рамках КРТ/);
   assert.match(html, /Жилой дом с офисными помещениями на 8700 м²/);
+  assert.match(html, /technology-center-01\.jpg/);
+  assert.match(html, /technology-center-02\.jpg/);
+  assert.match(html, /technology-center-03\.jpg/);
   assert.match(html, /Благоустройство микрорайона в рамках КРТ/);
   assert.match(html, /Отделка мест общего пользования/);
   assert.match(html, />Промышленный парк</);
@@ -184,6 +189,9 @@ test("includes the supplied image assets", async () => {
     "public/brand-logo.png",
     "public/hero-protected-facility-optimized.jpg",
     "public/about-hero-optimized.jpg",
+    "public/company/technology-center-01.jpg",
+    "public/company/technology-center-02.jpg",
+    "public/company/technology-center-03.jpg",
     "public/construction/system-overview-optimized.jpg",
     "public/construction/system-layout-optimized.jpg",
     "public/construction/net-view-01-optimized.jpg",

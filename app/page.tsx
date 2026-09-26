@@ -5,6 +5,7 @@ import AnchorNavigation from "./AnchorNavigation";
 import ArrowUpRightIcon from "./ArrowUpRightIcon";
 import ProposalForm from "./ProposalForm";
 import SiteHeader from "./SiteHeader";
+import ViewportAnimations from "./ViewportAnimations";
 
 export const metadata: Metadata = {
   title: "Защита объектов от БПЛА и защитные сетки",
@@ -87,6 +88,7 @@ export default function Home() {
   return (
     <main>
       <AnchorNavigation />
+      <ViewportAnimations />
       <SiteHeader current="home" />
 
       <section className="hero shell" id="top">
@@ -122,7 +124,11 @@ export default function Home() {
           <p className="microcopy">Первичная консультация и разбор задачи — бесплатно</p>
         </div>
 
-        <div className="machine" aria-label="Схема защиты критически важного промышленного объекта от удара БПЛА">
+        <div
+          className="machine"
+          data-animate-on-view
+          aria-label="Схема защиты критически важного промышленного объекта от удара БПЛА"
+        >
           <div className="machine-bar">
             <span>Инженерный контур</span>
             <span>Объект защищён / online</span>
@@ -220,17 +226,31 @@ export default function Home() {
 
       <section className="construction" id="construction">
         <div className="shell">
-          <div className="section-head compact">
+          <div className="section-head compact construction-head">
             <div>
               <span className="section-label">Система защиты</span>
               <h2>Конструкция системы защитной сетки</h2>
             </div>
-            <p>
-              Основные элементы конструкции, схема размещения и общий вид
-              установленной сетки.
-            </p>
+            <div className="construction-intro">
+              <span>01—03 / Устройство системы</span>
+              <p>
+                От поэтапной сборки защитного контура до схемы размещения и
+                общего вида установленной конструкции.
+              </p>
+            </div>
           </div>
-          <div className="assembly-demo" aria-label="Анимация поэтапной сборки защитной конструкции вокруг объекта">
+          <div className="construction-stage-heading">
+            <span>01</span>
+            <div>
+              <h3>Как собирается защитный контур</h3>
+              <p>Последовательно показываем монтаж основания, опор, силовых тросов и сетки.</p>
+            </div>
+          </div>
+          <div
+            className="assembly-demo"
+            data-animate-on-view
+            aria-label="Анимация поэтапной сборки защитной конструкции вокруг объекта"
+          >
             <div className="assembly-demo-head">
               <span>Сценарий монтажа / 01—04</span>
               <span className="assembly-demo-status"><i aria-hidden="true" /> Система собирается</span>
@@ -264,6 +284,13 @@ export default function Home() {
               <li style={{ "--stage": 3 } as CSSProperties}><b>04</b><span>Защитная сетка</span></li>
             </ol>
           </div>
+          <div className="construction-stage-heading">
+            <span>02</span>
+            <div>
+              <h3>Состав защитной конструкции</h3>
+              <p>Основные несущие элементы и их расположение вокруг защищаемого объекта.</p>
+            </div>
+          </div>
           <figure className="construction-overview">
             <a className="construction-image-link" href="/construction/system-overview-optimized.jpg" target="_blank" rel="noreferrer" aria-label="Открыть схему основных элементов в полном размере">
               <Image
@@ -276,8 +303,15 @@ export default function Home() {
                 quality={92}
               />
             </a>
-            <figcaption>Состав и основные элементы защитной конструкции</figcaption>
+            <figcaption><span>01</span> Состав и основные элементы защитной конструкции</figcaption>
           </figure>
+          <div className="construction-stage-heading gallery-heading">
+            <span>03</span>
+            <div>
+              <h3>Схема и общий вид системы</h3>
+              <p>Пример проектного решения и два ракурса защитной конструкции на площадке.</p>
+            </div>
+          </div>
           <div className="construction-gallery">
             <figure className="construction-card diagram">
               <a className="construction-image-link" href="/construction/system-layout-optimized.jpg" target="_blank" rel="noreferrer" aria-label="Открыть схему размещения в полном размере">
@@ -291,7 +325,7 @@ export default function Home() {
                   quality={92}
                 />
               </a>
-              <figcaption>Пример схемы размещения</figcaption>
+              <figcaption><span>01</span> Пример схемы размещения</figcaption>
             </figure>
             <figure className="construction-card photo">
               <a className="construction-image-link" href="/construction/net-view-01-optimized.jpg" target="_blank" rel="noreferrer" aria-label="Открыть фотографию конструкции, первый ракурс">
@@ -304,7 +338,7 @@ export default function Home() {
                   sizes="(max-width: 620px) 82vw, (max-width: 980px) 31vw, 350px"
                 />
               </a>
-              <figcaption>Общий вид конструкции · ракурс 01</figcaption>
+              <figcaption><span>02</span> Общий вид конструкции · ракурс 01</figcaption>
             </figure>
             <figure className="construction-card photo">
               <a className="construction-image-link" href="/construction/net-view-02-optimized.jpg" target="_blank" rel="noreferrer" aria-label="Открыть фотографию конструкции, второй ракурс">
@@ -317,7 +351,7 @@ export default function Home() {
                   sizes="(max-width: 620px) 82vw, (max-width: 980px) 31vw, 350px"
                 />
               </a>
-              <figcaption>Общий вид конструкции · ракурс 02</figcaption>
+              <figcaption><span>03</span> Общий вид конструкции · ракурс 02</figcaption>
             </figure>
           </div>
         </div>

@@ -78,7 +78,14 @@ const projects = [
     images: ["01"],
   },
   { title: "Промышленный парк", images: ["02", "03", "04"] },
-  { title: "Технологический центр с офисными и жилыми помещениями", images: ["05"] },
+  {
+    title: "Технологический центр с офисными и жилыми помещениями",
+    images: [
+      "/company/technology-center-01.jpg",
+      "/company/technology-center-02.jpg",
+      "/company/technology-center-03.jpg",
+    ],
+  },
   { title: "Жилой дом на 296 квартир", images: ["06"] },
   { title: "Жилой дом с офисными помещениями на 8700 м²", images: ["07"] },
   { title: "Отделка мест общего пользования", images: ["08", "09"] },
@@ -162,7 +169,7 @@ export default function AboutPage() {
                   {project.images.map((image, imageIndex) => (
                     <Image
                       key={image}
-                      src={"/company/project-" + image + "-optimized.jpg"}
+                      src={image.startsWith("/") ? image : "/company/project-" + image + "-optimized.jpg"}
                       alt={project.title + (project.images.length > 1 ? ", вид " + (imageIndex + 1) : "")}
                       width={1280}
                       height={853}
