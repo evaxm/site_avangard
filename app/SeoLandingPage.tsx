@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import SeoHeroAnimation from "./SeoHeroAnimation";
 import SiteHeader from "./SiteHeader";
+import ViewportAnimations from "./ViewportAnimations";
 
 export type SeoLandingData = {
   path: string;
@@ -9,6 +11,7 @@ export type SeoLandingData = {
   lead: string;
   image: string;
   imageAlt: string;
+  heroAnimation?: "protective-net" | "design-blueprint";
   introTitle: string;
   intro: string[];
   featuresTitle: string;
@@ -60,6 +63,7 @@ export default function SeoLandingPage({ data }: { data: SeoLandingData }) {
 
   return (
     <main>
+      <ViewportAnimations />
       <SiteHeader />
 
       <section className="seo-hero">
@@ -76,9 +80,13 @@ export default function SeoLandingPage({ data }: { data: SeoLandingData }) {
               <Link className="seo-text-link" href="/solutions">Посмотреть отраслевые решения</Link>
             </div>
           </div>
-          <div className="seo-hero-media">
-            <Image src={data.image} alt={data.imageAlt} fill priority unoptimized sizes="(max-width: 900px) calc(100vw - 36px), 44vw" />
-          </div>
+          {data.heroAnimation ? (
+            <SeoHeroAnimation variant={data.heroAnimation} />
+          ) : (
+            <div className="seo-hero-media">
+              <Image src={data.image} alt={data.imageAlt} fill priority unoptimized sizes="(max-width: 900px) calc(100vw - 36px), 44vw" />
+            </div>
+          )}
         </div>
       </section>
 

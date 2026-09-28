@@ -170,6 +170,21 @@ test("serves focused search landing pages with unique metadata and structured da
   }
 });
 
+test("uses viewport-triggered technical animations on the protective-net and design landing pages", async () => {
+  const nets = await (await render("/zashchitnye-setki-ot-bpla")).text();
+  assert.match(nets, /class="seo-visual seo-visual-net" data-animate-on-view="true"/);
+  assert.match(nets, /БПЛА/);
+  assert.match(nets, /ЗАЩИТНАЯ СЕТКА/);
+  assert.match(nets, /КОНТУР УДЕРЖИВАЕТ ВОЗДЕЙСТВИЕ/);
+  assert.doesNotMatch(nets, /class="seo-hero-media"/);
+
+  const design = await (await render("/proektirovanie-zok")).text();
+  assert.match(design, /class="seo-visual seo-visual-blueprint" data-animate-on-view="true"/);
+  assert.match(design, /ПРОЛЁТ \/ РАСЧЁТ/);
+  assert.match(design, /РАБОЧАЯ МОДЕЛЬ ГОТОВА/);
+  assert.doesNotMatch(design, /class="seo-hero-media"/);
+});
+
 test("uses vector arrows instead of platform emoji glyphs", async () => {
   const home = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
   const about = await readFile(new URL("../app/about/page.tsx", import.meta.url), "utf8");
