@@ -5,9 +5,9 @@ import SiteHeader from "../SiteHeader";
 import { protectedObjectGroups } from "./data";
 
 export const metadata: Metadata = {
-  title: "Отраслевые решения",
+  title: "Отраслевые решения для защиты объектов от БПЛА",
   description:
-    "Защитные ограждающие конструкции для промышленных и инфраструктурных объектов.",
+    "Проектирование и монтаж защитных сеток и ЗОК для защиты от БПЛА объектов ТЭК, энергетики, промышленности и инфраструктуры.",
   alternates: { canonical: "/solutions" },
 };
 

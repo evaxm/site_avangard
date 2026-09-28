@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true },
+    googleBot: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
   },
   openGraph: {
     type: "website",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
       "Проектирование, изготовление и монтаж защитных сеток и защитных ограждающих конструкций (ЗОК) для промышленных и инфраструктурных объектов.",
     images: [
       {
-        url: "/og.png",
+        url: "/og.jpg",
         width: 1536,
         height: 1024,
         alt: "Промышленный объект под защитной сетчатой конструкцией",
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     title: "Защита объектов от БПЛА и защитные сетки | Авангард",
     description:
       "Проектирование, изготовление и монтаж защитных сеток и защитных ограждающих конструкций (ЗОК) для промышленных и инфраструктурных объектов.",
-    images: ["/og.png"],
+    images: ["/og.jpg"],
   },
   icons: { icon: "/favicon.svg" },
   other: {

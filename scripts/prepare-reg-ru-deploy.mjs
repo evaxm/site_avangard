@@ -9,6 +9,7 @@ await rm(deployment, { recursive: true, force: true });
 await cp(staticBuild, deployment, { recursive: true });
 
 const replacedImageAssets = [
+  "og.png",
   "hero-protected-facility.png",
   "about-hero.png",
   ...["audit", "project", "build", "service"].map((name) => `services/${name}.jpg`),

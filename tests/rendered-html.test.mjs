@@ -31,7 +31,8 @@ test("server-renders the home page with service and construction images", async 
   const html = await response.text();
   assert.match(html, /<title>Защита объектов от БПЛА и защитные сетки \| Авангард<\/title>/i);
   assert.match(html, /rel="canonical" href="https:\/\/bpla-zok\.ru\/"/i);
-  assert.match(html, /property="og:image" content="https:\/\/bpla-zok\.ru\/og\.png"/i);
+  assert.match(html, /property="og:image" content="https:\/\/bpla-zok\.ru\/og\.jpg"/i);
+  assert.match(html, /name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/i);
   assert.match(html, /type="application\/ld\+json"/i);
   assert.match(html, /https:\/\/bpla-zok\.ru\/#organization/i);
   assert.match(html, /https:\/\/bpla-zok\.ru\/#anti-uav-protection-service/i);
@@ -98,7 +99,7 @@ test("serves industry solutions as a separate page", async () => {
   assert.equal(response.status, 200);
 
   const html = await response.text();
-  assert.match(html, /<title>Отраслевые решения \| Авангард<\/title>/i);
+  assert.match(html, /<title>Отраслевые решения для защиты объектов от БПЛА \| Авангард<\/title>/i);
   assert.match(html, /rel="canonical" href="https:\/\/bpla-zok\.ru\/solutions"/i);
   assert.match(html, /href="\/solutions" aria-current="page">Отраслевые решения/);
   assert.doesNotMatch(html, /<nav[^>]*>[\s\S]*?>Документы<\/a>[\s\S]*?<\/nav>/);
@@ -128,13 +129,17 @@ test("uses vector arrows instead of platform emoji glyphs", async () => {
   assert.doesNotMatch(about, /↗/);
 });
 
-test("serves an empty policy page on this site", async () => {
+test("serves the personal data policy for this site", async () => {
   const response = await render("/policy");
   assert.equal(response.status, 200);
 
   const html = await response.text();
   assert.match(html, /Политика обработки персональных данных/);
   assert.match(html, /class="policy-content"/);
+  assert.match(html, /Редакция от 28 сентября 2026 года/);
+  assert.match(html, /Telegram в закрытый служебный чат Оператора/);
+  assert.match(html, /86\.avangard@bk\.ru/);
+  assert.match(html, /8 982 558 22 86/);
   assert.match(html, /name="robots" content="noindex, follow"/i);
   assert.doesNotMatch(html, /ab-guard\.ru/);
 });
@@ -167,6 +172,7 @@ test("ships search-engine and server support files", async () => {
 
   assert.match(robots, /Sitemap: https:\/\/bpla-zok\.ru\/sitemap\.xml/);
   assert.match(sitemap, /<loc>https:\/\/bpla-zok\.ru\/solutions<\/loc>/);
+  assert.match(sitemap, /<lastmod>2026-09-28<\/lastmod>/);
   assert.doesNotMatch(sitemap, /\/policy/);
   assert.match(htaccess, /ErrorDocument 404 \/404\.html/);
   assert.match(missingPage, /<meta name="robots" content="noindex, follow">/);
@@ -187,6 +193,7 @@ test("includes the supplied image assets", async () => {
     "public/services/build-optimized.jpg",
     "public/services/service-optimized.jpg",
     "public/brand-logo.png",
+    "public/og.jpg",
     "public/hero-protected-facility-optimized.jpg",
     "public/about-hero-optimized.jpg",
     "public/company/technology-center-01.jpg",
