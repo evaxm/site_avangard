@@ -9,6 +9,20 @@ export const metadata: Metadata = {
   description:
     "Проектирование и монтаж защитных сеток и ЗОК для защиты от БПЛА объектов ТЭК, энергетики, промышленности и инфраструктуры.",
   alternates: { canonical: "/solutions" },
+  openGraph: {
+    type: "website",
+    locale: "ru_RU",
+    url: "/solutions",
+    title: "Отраслевые решения для защиты объектов от БПЛА | Авангард",
+    description: "Защитные сетки и ЗОК для объектов ТЭК, энергетики, промышленности и инфраструктуры.",
+    images: [{ url: "/objects/tek-optimized.jpg", width: 1672, height: 941, alt: "Объект ТЭК под защитной сетчатой конструкцией" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Отраслевые решения для защиты объектов от БПЛА | Авангард",
+    description: "Защитные сетки и ЗОК для объектов ТЭК, энергетики, промышленности и инфраструктуры.",
+    images: ["/objects/tek-optimized.jpg"],
+  },
 };
 
 export default function SolutionsPage() {
@@ -76,6 +90,18 @@ export default function SolutionsPage() {
           и требования заказчика.
         </p>
         <Link className="button primary" href="/#contacts">Обсудить объект →</Link>
+      </section>
+
+      <section className="seo-related shell solutions-seo-links" aria-labelledby="solutions-seo-title">
+        <div className="seo-block-head">
+          <span className="section-label">Инженерная защита</span>
+          <h2 id="solutions-seo-title">Подробнее о защитных конструкциях</h2>
+        </div>
+        <div className="seo-related-grid">
+          <Link href="/zok-ot-bpla"><h3>Защитные ограждающие конструкции</h3><p>Состав и применение ЗОК от БПЛА.</p><span>Подробнее →</span></Link>
+          <Link href="/zashchitnye-setki-ot-bpla"><h3>Защитные сетки от дронов</h3><p>Проектирование сетчатого защитного контура.</p><span>Подробнее →</span></Link>
+          <Link href="/proektirovanie-zok"><h3>Проектирование ЗОК</h3><p>От обследования до рабочей документации и монтажа.</p><span>Подробнее →</span></Link>
+        </div>
       </section>
 
       <footer>

@@ -122,6 +122,49 @@ test("serves industry solutions as a separate page", async () => {
   assert.match(html, /alt="Объект инфраструктуры жизнеобеспечения под защитной сетчатой конструкцией"/);
 });
 
+test("serves focused search landing pages with unique metadata and structured data", async () => {
+  const pages = [
+    {
+      path: "/zok-ot-bpla",
+      title: "ЗОК от БПЛА — защитные ограждающие конструкции",
+      canonical: "zok-ot-bpla",
+      heading: "Защитные ограждающие конструкции (ЗОК) от БПЛА",
+    },
+    {
+      path: "/zashchitnye-setki-ot-bpla",
+      title: "Защитные сетки от БПЛА и дронов для объектов",
+      canonical: "zashchitnye-setki-ot-bpla",
+      heading: "Защитные сетки от БПЛА и дронов для промышленных объектов",
+    },
+    {
+      path: "/proektirovanie-zok",
+      title: "Проектирование ЗОК от БПЛА — расчёты и документация",
+      canonical: "proektirovanie-zok",
+      heading: "Проектирование защитных конструкций от БПЛА",
+    },
+  ];
+
+  for (const page of pages) {
+    const response = await render(page.path);
+    assert.equal(response.status, 200);
+    const html = await response.text();
+    assert.match(html, new RegExp(`<title>${page.title} \\| Авангард<\\/title>`, "i"));
+    assert.match(html, new RegExp(`rel="canonical" href="https:\\/\\/bpla-zok\\.ru\\/${page.canonical}"`, "i"));
+    assert.ok(html.includes(page.heading));
+    assert.match(html, /"@type":"BreadcrumbList"/);
+    assert.match(html, /"@type":"Service"/);
+    assert.match(html, /"@type":"FAQPage"/);
+    const relatedPaths = [
+      "/zok-ot-bpla",
+      "/zashchitnye-setki-ot-bpla",
+      "/proektirovanie-zok",
+    ].filter((path) => path !== page.path);
+    for (const path of relatedPaths) {
+      assert.ok(html.includes(`href="${path}"`));
+    }
+  }
+});
+
 test("uses vector arrows instead of platform emoji glyphs", async () => {
   const home = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
   const about = await readFile(new URL("../app/about/page.tsx", import.meta.url), "utf8");
@@ -175,10 +218,27 @@ test("ships search-engine and server support files", async () => {
 
   assert.match(robots, /Sitemap: https:\/\/bpla-zok\.ru\/sitemap\.xml/);
   assert.match(sitemap, /<loc>https:\/\/bpla-zok\.ru\/solutions<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/bpla-zok\.ru\/zok-ot-bpla<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/bpla-zok\.ru\/zashchitnye-setki-ot-bpla<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/bpla-zok\.ru\/proektirovanie-zok<\/loc>/);
   assert.match(sitemap, /<lastmod>2026-09-28<\/lastmod>/);
   assert.doesNotMatch(sitemap, /\/policy/);
   assert.match(htaccess, /ErrorDocument 404 \/404\.html/);
   assert.match(missingPage, /<meta name="robots" content="noindex, follow">/);
+});
+
+test("REG.RU deployment includes every indexable route", async () => {
+  const script = await readFile(new URL("../scripts/prepare-reg-ru-deploy.mjs", import.meta.url), "utf8");
+
+  for (const route of [
+    "/about",
+    "/solutions",
+    "/zok-ot-bpla",
+    "/zashchitnye-setki-ot-bpla",
+    "/proektirovanie-zok",
+  ]) {
+    assert.ok(script.includes(`"${route}"`), `${route} is missing from the REG.RU deployment`);
+  }
 });
 
 test("handles Telegram group migrations without exposing credentials", async () => {

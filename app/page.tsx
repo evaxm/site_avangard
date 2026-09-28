@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import AnchorNavigation from "./AnchorNavigation";
@@ -387,6 +388,31 @@ export default function Home() {
               <p>{item.answer}</p>
             </details>
           ))}
+        </div>
+      </section>
+
+      <section className="seo-related shell home-seo-hub" aria-labelledby="home-seo-title">
+        <div className="seo-block-head">
+          <span className="section-label">Инженерная защита</span>
+          <h2 id="home-seo-title">Защитные конструкции и сетки от БПЛА</h2>
+          <p>Подробно о составе системы, сетчатом контуре и проектировании решения для конкретного объекта.</p>
+        </div>
+        <div className="seo-related-grid">
+          <Link href="/zok-ot-bpla">
+            <h3>ЗОК от БПЛА</h3>
+            <p>Назначение, состав и применение защитных ограждающих конструкций.</p>
+            <span>Подробнее →</span>
+          </Link>
+          <Link href="/zashchitnye-setki-ot-bpla">
+            <h3>Защитные сетки от дронов</h3>
+            <p>Сетчатые защитные контуры для промышленных и инфраструктурных объектов.</p>
+            <span>Подробнее →</span>
+          </Link>
+          <Link href="/proektirovanie-zok">
+            <h3>Проектирование ЗОК</h3>
+            <p>Обследование, концепция, расчёты, чертежи и рабочая документация.</p>
+            <span>Подробнее →</span>
+          </Link>
         </div>
       </section>
 

@@ -30,7 +30,17 @@ const workerUrl = new URL("../dist/server/index.js", import.meta.url);
 workerUrl.searchParams.set("deploy", `${process.pid}-${Date.now()}`);
 const { default: worker } = await import(workerUrl.href);
 
-for (const pathname of ["/", "/about", "/solutions", "/policy"]) {
+const staticRoutes = [
+  "/",
+  "/about",
+  "/solutions",
+  "/policy",
+  "/zok-ot-bpla",
+  "/zashchitnye-setki-ot-bpla",
+  "/proektirovanie-zok",
+];
+
+for (const pathname of staticRoutes) {
   const response = await worker.fetch(
     new Request(`http://localhost${pathname}`, {
       headers: { accept: "text/html" },
