@@ -77,6 +77,11 @@ test("server-renders the home page with service and construction images", async 
   assert.match(html, /alt="Схема размещения защитной сетки вокруг группы промышленных ёмкостей"/);
   assert.match(html, /alt="Промышленная площадка с резервуарами под защитной сетчатой конструкцией"/);
   assert.match(html, /alt="Установленная защитная сетчатая конструкция, второй ракурс"/);
+  assert.match(html, /data-lightbox-src="\/construction\/system-overview-optimized\.jpg"/);
+  assert.match(html, /data-lightbox-src="\/construction\/system-layout-optimized\.jpg"/);
+  assert.match(html, /data-lightbox-src="\/construction\/net-view-01-optimized\.jpg"/);
+  assert.match(html, /data-lightbox-src="\/construction\/net-view-02-optimized\.jpg"/);
+  assert.doesNotMatch(html, /target="_blank"[^>]*href="\/construction\//);
   assert.match(html, /Анимация поэтапной сборки защитной конструкции вокруг объекта/);
   assert.match(html, /Фундаментные блоки/);
   assert.match(html, /Решётчатые опоры/);

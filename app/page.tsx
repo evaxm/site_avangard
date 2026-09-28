@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import AnchorNavigation from "./AnchorNavigation";
 import ArrowUpRightIcon from "./ArrowUpRightIcon";
+import ImageLightbox from "./ImageLightbox";
 import ProposalForm from "./ProposalForm";
 import SiteHeader from "./SiteHeader";
 import ViewportAnimations from "./ViewportAnimations";
@@ -293,7 +294,13 @@ export default function Home() {
             </div>
           </div>
           <figure className="construction-overview">
-            <a className="construction-image-link" href="/construction/system-overview-optimized.jpg" target="_blank" rel="noreferrer" aria-label="Открыть схему основных элементов в полном размере">
+            <ImageLightbox
+              src="/construction/system-overview-optimized.jpg"
+              alt="Схема основных элементов системы защитной сетки"
+              width={1672}
+              height={941}
+              triggerLabel="Показать схему основных элементов крупнее"
+            >
               <Image
                 src="/construction/system-overview-optimized.jpg"
                 alt="Схема основных элементов системы защитной сетки"
@@ -303,7 +310,7 @@ export default function Home() {
                 sizes="(max-width: 620px) calc(100vw - 56px), (max-width: 980px) calc(100vw - 72px), 1040px"
                 quality={92}
               />
-            </a>
+            </ImageLightbox>
             <figcaption><span>01</span> Состав и основные элементы защитной конструкции</figcaption>
           </figure>
           <div className="construction-stage-heading gallery-heading">
@@ -315,7 +322,13 @@ export default function Home() {
           </div>
           <div className="construction-gallery">
             <figure className="construction-card diagram">
-              <a className="construction-image-link" href="/construction/system-layout-optimized.jpg" target="_blank" rel="noreferrer" aria-label="Открыть схему размещения в полном размере">
+              <ImageLightbox
+                src="/construction/system-layout-optimized.jpg"
+                alt="Схема размещения защитной сетки вокруг группы промышленных ёмкостей"
+                width={1448}
+                height={1086}
+                triggerLabel="Показать схему размещения крупнее"
+              >
                 <Image
                   src="/construction/system-layout-optimized.jpg"
                   alt="Схема размещения защитной сетки вокруг группы промышленных ёмкостей"
@@ -325,11 +338,17 @@ export default function Home() {
                   sizes="(max-width: 620px) 82vw, (max-width: 980px) 31vw, 350px"
                   quality={92}
                 />
-              </a>
+              </ImageLightbox>
               <figcaption><span>01</span> Пример схемы размещения</figcaption>
             </figure>
             <figure className="construction-card photo">
-              <a className="construction-image-link" href="/construction/net-view-01-optimized.jpg" target="_blank" rel="noreferrer" aria-label="Открыть фотографию конструкции, первый ракурс">
+              <ImageLightbox
+                src="/construction/net-view-01-optimized.jpg"
+                alt="Промышленная площадка с резервуарами под защитной сетчатой конструкцией"
+                width={1254}
+                height={1254}
+                triggerLabel="Показать фотографию конструкции, первый ракурс"
+              >
                 <Image
                   src="/construction/net-view-01-optimized.jpg"
                   alt="Промышленная площадка с резервуарами под защитной сетчатой конструкцией"
@@ -338,11 +357,17 @@ export default function Home() {
                   unoptimized
                   sizes="(max-width: 620px) 82vw, (max-width: 980px) 31vw, 350px"
                 />
-              </a>
+              </ImageLightbox>
               <figcaption><span>02</span> Общий вид конструкции · ракурс 01</figcaption>
             </figure>
             <figure className="construction-card photo">
-              <a className="construction-image-link" href="/construction/net-view-02-optimized.jpg" target="_blank" rel="noreferrer" aria-label="Открыть фотографию конструкции, второй ракурс">
+              <ImageLightbox
+                src="/construction/net-view-02-optimized.jpg"
+                alt="Установленная защитная сетчатая конструкция, второй ракурс"
+                width={1448}
+                height={1086}
+                triggerLabel="Показать фотографию конструкции, второй ракурс"
+              >
                 <Image
                   src="/construction/net-view-02-optimized.jpg"
                   alt="Установленная защитная сетчатая конструкция, второй ракурс"
@@ -351,7 +376,7 @@ export default function Home() {
                   unoptimized
                   sizes="(max-width: 620px) 82vw, (max-width: 980px) 31vw, 350px"
                 />
-              </a>
+              </ImageLightbox>
               <figcaption><span>03</span> Общий вид конструкции · ракурс 02</figcaption>
             </figure>
           </div>
