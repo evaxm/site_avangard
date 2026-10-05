@@ -4,7 +4,7 @@ import SiteHeader from "../SiteHeader";
 export const metadata: Metadata = {
   title: "Политика обработки персональных данных",
   description: "Политика обработки персональных данных сайта bpla-zok.ru.",
-  alternates: { canonical: "/policy" },
+  alternates: { canonical: "/policy/" },
   robots: { index: false, follow: true },
 };
 

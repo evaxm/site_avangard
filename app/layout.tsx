@@ -31,6 +31,9 @@ export const metadata: Metadata = {
     "Проектирование, изготовление и монтаж защитных сеток и защитных ограждающих конструкций (ЗОК) для промышленных и инфраструктурных объектов.",
   keywords: [
     "защита от БПЛА",
+    "защитные сетки от БПЛА",
+    "защитные сетки от дронов",
+    "антидроновая сетка",
     "защитные ограждающие конструкции",
     "защита промышленных объектов",
     "инженерная защита",
@@ -66,7 +69,16 @@ export const metadata: Metadata = {
       "Проектирование, изготовление и монтаж защитных сеток и защитных ограждающих конструкций (ЗОК) для промышленных и инфраструктурных объектов.",
     images: ["/hero-protected-facility-optimized.jpg?v=20260928"],
   },
-  icons: { icon: "/favicon.svg" },
+  manifest: "/site.webmanifest",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-48x48.png", type: "image/png", sizes: "48x48" },
+      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [{ url: "/apple-touch-icon.png", type: "image/png", sizes: "180x180" }],
+  },
   other: {
     "geo.region": "RU-KHM",
     "geo.placename": "Ханты-Мансийск",

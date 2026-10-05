@@ -119,7 +119,7 @@ export default function Home() {
             <a className="button primary" href="#contacts">
               Обсудить объект <span aria-hidden="true">→</span>
             </a>
-            <a className="button secondary" href="/about">
+            <a className="button secondary" href="/about/">
               О компании
             </a>
           </div>
@@ -423,17 +423,17 @@ export default function Home() {
           <p>Подробно о составе системы, сетчатом контуре и проектировании решения для конкретного объекта.</p>
         </div>
         <div className="seo-related-grid">
-          <Link href="/zok-ot-bpla">
+          <Link href="/zok-ot-bpla/">
             <h3>ЗОК от БПЛА</h3>
             <p>Назначение, состав и применение защитных ограждающих конструкций.</p>
             <span>Подробнее →</span>
           </Link>
-          <Link href="/zashchitnye-setki-ot-bpla">
+          <Link href="/zashchitnye-setki-ot-bpla/">
             <h3>Защитные сетки от дронов</h3>
             <p>Сетчатые защитные контуры для промышленных и инфраструктурных объектов.</p>
             <span>Подробнее →</span>
           </Link>
-          <Link href="/proektirovanie-zok">
+          <Link href="/proektirovanie-zok/">
             <h3>Проектирование ЗОК</h3>
             <p>Обследование, концепция, расчёты, чертежи и рабочая документация.</p>
             <span>Подробнее →</span>

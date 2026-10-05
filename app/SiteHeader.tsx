@@ -22,9 +22,9 @@ export default function SiteHeader({ current }: SiteHeaderProps) {
         </Link>
         <nav className="nav-links" aria-label="Основная навигация">
           <Link href="/" aria-current={current === "home" ? "page" : undefined}>Главная</Link>
-          <Link href="/about" aria-current={current === "about" ? "page" : undefined}>О компании</Link>
+          <Link href="/about/" aria-current={current === "about" ? "page" : undefined}>О компании</Link>
           <Link href="/#construction">Конструкция системы</Link>
-          <Link href="/solutions" aria-current={current === "solutions" ? "page" : undefined}>Отраслевые решения</Link>
+          <Link href="/solutions/" aria-current={current === "solutions" ? "page" : undefined}>Отраслевые решения</Link>
           <Link href="/#contacts">Контакты</Link>
         </nav>
         <div className="header-contacts">

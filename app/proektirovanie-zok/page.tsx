@@ -5,11 +5,11 @@ export const metadata: Metadata = {
   title: "Проектирование ЗОК от БПЛА — расчёты и документация",
   description: "Проектирование защитных ограждающих конструкций от БПЛА: обследование объекта, концепция, расчёты, чертежи, спецификации и рабочая документация.",
   keywords: ["проектирование ЗОК", "проект ЗОК от БПЛА", "расчёт защитной конструкции", "монтаж ЗОК", "изготовление ЗОК"],
-  alternates: { canonical: "/proektirovanie-zok" },
+  alternates: { canonical: "/proektirovanie-zok/" },
   openGraph: {
     type: "website",
     locale: "ru_RU",
-    url: "/proektirovanie-zok",
+    url: "/proektirovanie-zok/",
     title: "Проектирование ЗОК от БПЛА — расчёты и документация | Авангард",
     description: "Обследование объекта, концепция, расчёты, чертежи, спецификации и рабочая документация для защитных конструкций.",
     images: [{ url: "/services/project-optimized.jpg", width: 1672, height: 941, alt: "Проект защитной ограждающей конструкции" }],
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 };
 
 const data: SeoLandingData = {
-  path: "/proektirovanie-zok",
+  path: "/proektirovanie-zok/",
   eyebrow: "Проектирование ЗОК",
   title: "Проектирование защитных конструкций от БПЛА",
   lead: "От обследования площадки и концепции защитного контура до рабочей документации, изготовления и монтажа.",

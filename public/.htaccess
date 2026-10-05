@@ -12,7 +12,7 @@ ErrorDocument 404 /404.html
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
 
-  <FilesMatch "\.(?:png|jpe?g|webp|svg)$">
+  <FilesMatch "\.(?:png|jpe?g|webp|svg|ico|webmanifest)$">
     Header set Cache-Control "public, max-age=86400, stale-while-revalidate=604800"
   </FilesMatch>
 

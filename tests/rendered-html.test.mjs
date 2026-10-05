@@ -31,6 +31,9 @@ test("server-renders the home page with service and construction images", async 
   const html = await response.text();
   assert.match(html, /<title>Защита объектов от БПЛА и защитные сетки \| Авангард<\/title>/i);
   assert.match(html, /rel="canonical" href="https:\/\/bpla-zok\.ru\/"/i);
+  assert.match(html, /rel="manifest" href="https:\/\/bpla-zok\.ru\/site\.webmanifest"/i);
+  assert.match(html, /rel="icon" href="https:\/\/bpla-zok\.ru\/favicon\.svg" type="image\/svg\+xml"/i);
+  assert.match(html, /rel="apple-touch-icon" href="https:\/\/bpla-zok\.ru\/apple-touch-icon\.png" sizes="180x180" type="image\/png"/i);
   assert.match(
     html,
     /property="og:image" content="https:\/\/bpla-zok\.ru\/hero-protected-facility-optimized\.jpg\?v=20260928"/i,
@@ -56,7 +59,7 @@ test("server-renders the home page with service and construction images", async 
   assert.match(html, /name="Почта"/);
   assert.match(html, /name="Город"/);
   assert.match(html, /<input(?=[^>]*type="checkbox")(?=[^>]*name="Согласие на обработку персональных данных")(?=[^>]*required)[^>]*>/);
-  assert.match(html, /href="\/policy"/);
+  assert.match(html, /href="\/policy\/"/);
   assert.match(html, /Я ознакомлен\(а\) с/);
   assert.match(html, /Получить КП/);
   assert.match(html, /name="website"/);
@@ -95,7 +98,7 @@ test("server-renders the home page with service and construction images", async 
   assert.match(html, /class="machine" data-animate-on-view="true"/);
   assert.match(html, /class="assembly-demo" data-animate-on-view="true"/);
   assert.doesNotMatch(html, /Открыть крупнее/);
-  assert.match(html, /href="\/solutions"[^>]*>Отраслевые решения/);
+  assert.match(html, /href="\/solutions\/"[^>]*>Отраслевые решения/);
   assert.doesNotMatch(html, /<nav[^>]*>[\s\S]*?>Документы<\/a>[\s\S]*?<\/nav>/);
   assert.doesNotMatch(html, /<section class="object-scope"/);
   assert.doesNotMatch(html, /Компетенции на стыке инженерных дисциплин/);
@@ -108,8 +111,8 @@ test("serves industry solutions as a separate page", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>Отраслевые решения для защиты объектов от БПЛА \| Авангард<\/title>/i);
-  assert.match(html, /rel="canonical" href="https:\/\/bpla-zok\.ru\/solutions"/i);
-  assert.match(html, /href="\/solutions" aria-current="page">Отраслевые решения/);
+  assert.match(html, /rel="canonical" href="https:\/\/bpla-zok\.ru\/solutions\/"/i);
+  assert.match(html, /href="\/solutions\/" aria-current="page">Отраслевые решения/);
   assert.doesNotMatch(html, /<nav[^>]*>[\s\S]*?>Документы<\/a>[\s\S]*?<\/nav>/);
   assert.match(html, /Защитные ограждающие конструкции \(ЗОК\) для промышленных и/);
   assert.match(html, /Объекты ТЭК/);
@@ -154,16 +157,16 @@ test("serves focused search landing pages with unique metadata and structured da
     assert.equal(response.status, 200);
     const html = await response.text();
     assert.match(html, new RegExp(`<title>${page.title} \\| Авангард<\\/title>`, "i"));
-    assert.match(html, new RegExp(`rel="canonical" href="https:\\/\\/bpla-zok\\.ru\\/${page.canonical}"`, "i"));
+    assert.match(html, new RegExp(`rel="canonical" href="https:\\/\\/bpla-zok\\.ru\\/${page.canonical}\\/"`, "i"));
     assert.ok(html.includes(page.heading));
     assert.match(html, /"@type":"BreadcrumbList"/);
     assert.match(html, /"@type":"Service"/);
     assert.match(html, /"@type":"FAQPage"/);
     const relatedPaths = [
-      "/zok-ot-bpla",
-      "/zashchitnye-setki-ot-bpla",
-      "/proektirovanie-zok",
-    ].filter((path) => path !== page.path);
+      "/zok-ot-bpla/",
+      "/zashchitnye-setki-ot-bpla/",
+      "/proektirovanie-zok/",
+    ].filter((path) => path !== `${page.path}/`);
     for (const path of relatedPaths) {
       assert.ok(html.includes(`href="${path}"`));
     }
@@ -216,7 +219,7 @@ test("uses unique canonical metadata for the company page", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>О компании \| Авангард<\/title>/i);
-  assert.match(html, /rel="canonical" href="https:\/\/bpla-zok\.ru\/about"/i);
+  assert.match(html, /rel="canonical" href="https:\/\/bpla-zok\.ru\/about\/"/i);
   assert.match(html, /Жилой комплекс из 5 домов — 54 тыс\. м² жилого фонда со встроенным детским садом в рамках КРТ/);
   assert.match(html, /Жилой дом с офисными помещениями на 8700 м²/);
   assert.match(html, /technology-center-01\.jpg/);
@@ -228,21 +231,26 @@ test("uses unique canonical metadata for the company page", async () => {
   assert.doesNotMatch(html, /Северин|Долина ручьёв|Импульс/);
 });
 
-test("ships search-engine and server support files", async () => {
-  const [robots, sitemap, htaccess, missingPage] = await Promise.all([
+test("ships search-engine, favicon, and server support files", async () => {
+  const [robots, sitemap, manifest, htaccess, missingPage] = await Promise.all([
     readFile(new URL("../public/robots.txt", import.meta.url), "utf8"),
     readFile(new URL("../public/sitemap.xml", import.meta.url), "utf8"),
+    readFile(new URL("../public/site.webmanifest", import.meta.url), "utf8"),
     readFile(new URL("../public/.htaccess", import.meta.url), "utf8"),
     readFile(new URL("../public/404.html", import.meta.url), "utf8"),
   ]);
 
   assert.match(robots, /Sitemap: https:\/\/bpla-zok\.ru\/sitemap\.xml/);
-  assert.match(sitemap, /<loc>https:\/\/bpla-zok\.ru\/solutions<\/loc>/);
-  assert.match(sitemap, /<loc>https:\/\/bpla-zok\.ru\/zok-ot-bpla<\/loc>/);
-  assert.match(sitemap, /<loc>https:\/\/bpla-zok\.ru\/zashchitnye-setki-ot-bpla<\/loc>/);
-  assert.match(sitemap, /<loc>https:\/\/bpla-zok\.ru\/proektirovanie-zok<\/loc>/);
-  assert.match(sitemap, /<lastmod>2026-09-28<\/lastmod>/);
+  assert.match(sitemap, /<loc>https:\/\/bpla-zok\.ru\/solutions\/<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/bpla-zok\.ru\/zok-ot-bpla\/<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/bpla-zok\.ru\/zashchitnye-setki-ot-bpla\/<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/bpla-zok\.ru\/proektirovanie-zok\/<\/loc>/);
+  assert.match(sitemap, /<lastmod>2026-10-05<\/lastmod>/);
   assert.doesNotMatch(sitemap, /\/policy/);
+  assert.equal(JSON.parse(manifest).name, "Авангард — защита объектов от БПЛА");
+  for (const icon of ["favicon.ico", "favicon-32x32.png", "favicon-48x48.png", "apple-touch-icon.png", "icon-192.png", "icon-512.png"]) {
+    await access(new URL(`../public/${icon}`, import.meta.url));
+  }
   assert.match(htaccess, /ErrorDocument 404 \/404\.html/);
   assert.match(missingPage, /<meta name="robots" content="noindex, follow">/);
 });

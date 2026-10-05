@@ -5,11 +5,11 @@ export const metadata: Metadata = {
   title: "Защитные сетки от БПЛА и дронов для объектов",
   description: "Защитные сетки от дронов и БПЛА: обследование, проектирование сетчатого контура, изготовление и монтаж на промышленных объектах.",
   keywords: ["защитные сетки от дронов", "защитная сетка от БПЛА", "антидроновая сетка", "противодронная сетка", "сетка от дронов", "защитные сетки для промышленных объектов"],
-  alternates: { canonical: "/zashchitnye-setki-ot-bpla" },
+  alternates: { canonical: "/zashchitnye-setki-ot-bpla/" },
   openGraph: {
     type: "website",
     locale: "ru_RU",
-    url: "/zashchitnye-setki-ot-bpla",
+    url: "/zashchitnye-setki-ot-bpla/",
     title: "Защитные сетки от БПЛА и дронов для объектов | Авангард",
     description: "Обследование, проектирование сетчатого контура, изготовление и монтаж защитных сеток от дронов и БПЛА.",
     images: [{ url: "/construction/system-layout-optimized.jpg", width: 1672, height: 941, alt: "Схема защитной сетки вокруг промышленного объекта" }],
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 };
 
 const data: SeoLandingData = {
-  path: "/zashchitnye-setki-ot-bpla",
+  path: "/zashchitnye-setki-ot-bpla/",
   eyebrow: "Защитные сетки",
   title: "Защитные сетки от БПЛА и дронов для промышленных объектов",
   lead: "Проектируем сетчатые защитные контуры с учётом конфигурации площадки, критических зон и режима эксплуатации объекта.",

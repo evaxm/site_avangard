@@ -8,11 +8,11 @@ export const metadata: Metadata = {
   title: "О компании",
   description:
     "Строительная компания Авангард в Ханты-Мансийске: направления работ и опыт команды.",
-  alternates: { canonical: "/about" },
+  alternates: { canonical: "/about/" },
   openGraph: {
     type: "website",
     locale: "ru_RU",
-    url: "/about",
+    url: "/about/",
     title: "О компании | Авангард",
     description: "Строительная компания Авангард в Ханты-Мансийске: направления работ и опыт команды.",
     images: [{ url: "/about-hero-optimized.jpg", width: 1672, height: 941, alt: "Строительная площадка и проектная документация" }],

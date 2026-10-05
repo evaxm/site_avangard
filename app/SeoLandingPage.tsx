@@ -24,10 +24,10 @@ export type SeoLandingData = {
 };
 
 const relatedPages = [
-  { href: "/zok-ot-bpla", title: "ЗОК от БПЛА", text: "Назначение, состав и применение защитных ограждающих конструкций." },
-  { href: "/zashchitnye-setki-ot-bpla", title: "Защитные сетки от БПЛА", text: "Сетчатый контур для физической защиты промышленных объектов." },
-  { href: "/proektirovanie-zok", title: "Проектирование ЗОК", text: "Обследование, концепция, расчёты и рабочая документация." },
-  { href: "/solutions", title: "Отраслевые решения", text: "Объекты ТЭК, энергетики, промышленности и инфраструктуры." },
+  { href: "/zok-ot-bpla/", title: "ЗОК от БПЛА", text: "Назначение, состав и применение защитных ограждающих конструкций." },
+  { href: "/zashchitnye-setki-ot-bpla/", title: "Защитные сетки от БПЛА", text: "Сетчатый контур для физической защиты промышленных объектов." },
+  { href: "/proektirovanie-zok/", title: "Проектирование ЗОК", text: "Обследование, концепция, расчёты и рабочая документация." },
+  { href: "/solutions/", title: "Отраслевые решения", text: "Объекты ТЭК, энергетики, промышленности и инфраструктуры." },
 ];
 
 export default function SeoLandingPage({ data }: { data: SeoLandingData }) {
@@ -77,7 +77,7 @@ export default function SeoLandingPage({ data }: { data: SeoLandingData }) {
             <p>{data.lead}</p>
             <div className="seo-hero-actions">
               <Link className="button primary" href="/#contacts">Получить расчёт →</Link>
-              <Link className="seo-text-link" href="/solutions">Посмотреть отраслевые решения</Link>
+              <Link className="seo-text-link" href="/solutions/">Посмотреть отраслевые решения</Link>
             </div>
           </div>
           {data.heroAnimation ? (
